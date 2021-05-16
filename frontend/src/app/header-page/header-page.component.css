@@ -8,9 +8,12 @@
   font-size: small;
   color: #ccc;
 }
-.bg-login{
-  background-color: rgb(150, 148, 148);
+.login p:hover {
+  color: #fff;
 }
-.header{
+.header {
   border-bottom: 5px solid #807862;
+}
+.bg-login {
+  background-color: rgb(150, 148, 148);
 }
