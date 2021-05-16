@@ -1,0 +1,16 @@
+.bg-header {
+  background-color: #faf6f3;
+}
+.login p {
+  margin: 0;
+  display: block;
+  padding: 0.3rem 0.3rem;
+  font-size: small;
+  color: #ccc;
+}
+.bg-login{
+  background-color: rgb(150, 148, 148);
+}
+.header{
+  border-bottom: 5px solid #807862;
+}
