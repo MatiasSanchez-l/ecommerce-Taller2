@@ -18,7 +18,7 @@ const getProductos = async (req, res) => {
             TableName: TABLE_NAME
         };
         const productos = await dynamoClient.scan(params).promise();
-        res.json(productos);
+        res.status(200).json(productos);
     } catch (error) {
         console.log(error);
         res.status(500).json({erro: 'Algo salio mal.'});
@@ -36,7 +36,7 @@ const getProductoPorId = async (req, res) =>{
         }
     };
     let response= await dynamoClient.get(params).promise();
-    res.json(response);
+    res.status(200).json(response);
     } catch (error) {
         console.log(error);
         res.status(500).json({erro: 'Algo salio mal.'});
@@ -51,7 +51,7 @@ const crearOModificarProducto = async(req, res) =>{
         Item: req.body
     };
     let response= await dynamoClient.put(params).promise();
-    res.json(response);
+    res.status(201).json(response);
     } catch (error) {
         console.log(error);
         res.status(500).json({erro: 'Algo salio mal.'});
@@ -68,7 +68,9 @@ const borrarProducto = async(req, res) =>{
             id: idProducto
         }
     };
-    let response= await dynamoClient.delete(params).promise();
+
+    await dynamoClient.delete(params).promise();
+
     } catch (error) {
         console.log(error);
         res.status(500).json({erro: 'Algo salio mal.'});
