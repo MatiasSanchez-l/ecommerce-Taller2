@@ -5,19 +5,25 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderPageComponent } from './header-page/header-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
-
+import { HomePageComponent } from './home-page/home-page.component';
+import { TiendaPageComponent } from './tienda-page/tienda-page.component';
+import { ContactoPageComponent } from './contacto-page/contacto-page.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
+import { CarritoPageComponent } from './carrito-page/carrito-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderPageComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    HomePageComponent,
+    TiendaPageComponent,
+    ContactoPageComponent,
+    ErrorPageComponent,
+    CarritoPageComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

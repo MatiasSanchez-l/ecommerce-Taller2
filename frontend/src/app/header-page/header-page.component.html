@@ -1,7 +1,7 @@
 <div class="bg-login">
   <ul class="nav justify-content-end login">
     <li class="nav-item">
-      <p>Iniciar Sesion</p>
+      <p [routerLink]="['/login']">Iniciar Sesion</p>
     </li>
     <li class="nav-item">
       <p>Registrarse</p>
@@ -10,7 +10,7 @@
 </div>
 <nav class="navbar navbar-expand-lg navbar-light bg-header p-4 header">
   <div class="container">
-    <a class="navbar-brand fs-4" href="#">Ecommerce</a>
+    <a class="navbar-brand fs-4" [routerLink]="['']">Ecommerce</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -25,16 +25,18 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link fs-6" href="#">Inicio</a>
+          <a class="nav-link fs-6" [routerLink]="['/home']">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link fs-6" href="#">Tienda</a>
+          <a class="nav-link fs-6" [routerLink]="['/tienda']">Tienda</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link fs-6" href="#">Contacto</a>
+          <a class="nav-link fs-6" [routerLink]="['/contacto']">Contacto</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link fs-6" href="#"><i class="fas fa-shopping-cart"></i></a>
+          <a class="nav-link fs-6" [routerLink]="['/carrito']"
+            ><i class="fas fa-shopping-cart"></i
+          ></a>
         </li>
       </ul>
     </div>
