@@ -13,15 +13,22 @@ const dynamoClient = new AWS.DynamoDB.DocumentClient();
 const TABLE_NAME = "productos";
 
 const getProductos = async (req, res) => {
-    const params = {
-        TableName: TABLE_NAME
-    };
-    const productos = await dynamoClient.scan(params).promise();
-    res.json(productos);
+    try {
+        const params = {
+            TableName: TABLE_NAME
+        };
+        const productos = await dynamoClient.scan(params).promise();
+        res.json(productos);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({erro: 'Algo salio mal.'});
+    }
+    
 };
 
 const getProductoPorId = async (req, res) =>{
-    const idProducto = req.params.id;
+    try {
+        const idProducto = req.params.id;
     const params = {
         TableName: TABLE_NAME,
         Key: {
@@ -30,20 +37,31 @@ const getProductoPorId = async (req, res) =>{
     };
     let response= await dynamoClient.get(params).promise();
     res.json(response);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({erro: 'Algo salio mal.'});
+    }
+    
 };
 
 const crearOModificarProducto = async(req, res) =>{
-    console.log(req);
+    try {
     const params = {
         TableName: TABLE_NAME,
         Item: req.body
     };
     let response= await dynamoClient.put(params).promise();
     res.json(response);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({erro: 'Algo salio mal.'});
+    }
+    
 };
 
 const borrarProducto = async(req, res) =>{
-    const idProducto = req.params.id;
+    try {
+        const idProducto = req.params.id;
     const params = {
         TableName: TABLE_NAME,
         Key: {
@@ -51,7 +69,10 @@ const borrarProducto = async(req, res) =>{
         }
     };
     let response= await dynamoClient.delete(params).promise();
-    res.json(response);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({erro: 'Algo salio mal.'});
+    }
 };
 
 module.exports = {
