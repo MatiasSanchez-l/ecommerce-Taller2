@@ -5,12 +5,14 @@ import { ContactoPageComponent } from './contacto-page/contacto-page.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { RegistrarPageComponent } from './registrar-page/registrar-page.component';
 import { TiendaPageComponent } from './tienda-page/tienda-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'home', component: HomePageComponent },
   { path: 'login', component: LoginPageComponent },
+  { path: 'registrar', component: RegistrarPageComponent },
   { path: 'contacto', component: ContactoPageComponent },
   { path: 'tienda', component: TiendaPageComponent },
   { path: 'carrito', component: CarritoPageComponent },
