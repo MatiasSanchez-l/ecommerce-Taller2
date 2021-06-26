@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 //rutas
-app.use("/usuarios", require("./routes/usuarios"));
+app.use("/usuario", require("./routes/usuarios"));
 app.use("/producto", require("./routes/productos"));
 app.use((err, req, res) => {
   console.log(err.message)

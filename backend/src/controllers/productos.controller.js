@@ -70,7 +70,7 @@ const borrarProducto = async(req, res) =>{
     };
 
     await dynamoClient.delete(params).promise();
-
+    res.sendStatus(200);
     } catch (error) {
         console.log(error);
         res.status(500).json({erro: 'Algo salio mal.'});
