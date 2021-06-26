@@ -10,6 +10,7 @@ import { TiendaPageComponent } from './tienda-page/tienda-page.component';
 import { ContactoPageComponent } from './contacto-page/contacto-page.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { CarritoPageComponent } from './carrito-page/carrito-page.component';
+import { RegistrarPageComponent } from './registrar-page/registrar-page.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { CarritoPageComponent } from './carrito-page/carrito-page.component';
     ContactoPageComponent,
     ErrorPageComponent,
     CarritoPageComponent,
+    RegistrarPageComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
