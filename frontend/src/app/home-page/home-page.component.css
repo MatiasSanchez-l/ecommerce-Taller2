@@ -14,6 +14,7 @@
   width: 1496px;
   height: 300px;
   background-color: #77705b;
+  min-width: 100%;
   max-width: 100%;
   position: relative;
 }
@@ -28,4 +29,29 @@
   top: 50%;
   left: 35%;
   margin: -25px 0 0 -25px;
+}
+.mas-vendido {
+  background-color: #8f8965;
+}
+.mas-vendido .foto {
+}
+.mas-vendido .foto img {
+  width: 450px;
+  height: auto;
+  border: 2px #ccc solid;
+}
+
+.mas-vendido .texto {
+  color: #fff;
+}
+.link-compra {
+  padding-right: 1em;
+}
+.link-compra a {
+  cursor: pointer;
+  color: #fff;
+  text-decoration: none;
+}
+.link-compra a:hover {
+  text-decoration: underline;
 }
