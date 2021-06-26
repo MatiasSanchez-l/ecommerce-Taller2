@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CarritoPageComponent } from './carrito-page/carrito-page.component';
-import { ContactoPageComponent } from './contacto-page/contacto-page.component';
-import { ErrorPageComponent } from './error-page/error-page.component';
-import { HomePageComponent } from './home-page/home-page.component';
-import { LoginPageComponent } from './login-page/login-page.component';
-import { RegistrarPageComponent } from './registrar-page/registrar-page.component';
-import { TiendaPageComponent } from './tienda-page/tienda-page.component';
+import { CarritoPageComponent } from './Pages/carrito-page/carrito-page.component';
+import { ContactoPageComponent } from './Pages/contacto-page/contacto-page.component';
+import { ErrorPageComponent } from './Pages/error-page/error-page.component';
+import { HomePageComponent } from './Pages/home-page/home-page.component';
+import { LoginPageComponent } from './Pages/login-page/login-page.component';
+import { RegistrarPageComponent } from './Pages/registrar-page/registrar-page.component';
+import { TiendaPageComponent } from './Pages/tienda-page/tienda-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
