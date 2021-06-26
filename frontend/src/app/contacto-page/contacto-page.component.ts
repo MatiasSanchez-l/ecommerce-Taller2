@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SwalPortalTargets } from '@sweetalert2/ngx-sweetalert2';
 
 @Component({
   selector: 'app-contacto-page',
@@ -11,5 +12,6 @@ export class ContactoPageComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
 
 }
