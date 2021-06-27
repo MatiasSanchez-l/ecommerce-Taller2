@@ -7,6 +7,7 @@
   border: 0;
   border-radius: 0 !important;
   border-bottom: 1px solid #807862;
+
 }
 .btn-login {
   background-color: #807862;
@@ -15,6 +16,6 @@
   width: 70%;
   margin: auto;
 }
-.recover-pass a{
+.recover-pass a {
   color: #807870;
 }
