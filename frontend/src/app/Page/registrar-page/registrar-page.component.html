@@ -1,21 +1,48 @@
 <div class="container p-4">
-  <form class="login-form row">
+  <form class="login-form row" [formGroup]="formulario" (ngSubmit)="onSubmit()">
     <div class="my-2">
-      <h3>Registrarse</h3>
+      <h3>Registrate!</h3>
+    </div>
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre</label>
+      <input type="text" class="form-control" formControlName="nombre" />
+    </div>
+    <div class="mb-3">
+      <label for="apellido" class="form-label">Apellido</label>
+      <input type="text" class="form-control" formControlName="apellido" />
     </div>
     <div class="mb-3">
       <label for="email" class="form-label">Email</label>
-      <input type="email" class="form-control" id="email" name="email" />
+      <input type="email" class="form-control" formControlName="email" />
     </div>
     <div class="mb-3">
       <label for="password" class="form-label">Contraseña</label>
+      <input type="password" class="form-control" formControlName="password" />
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Repite Contraseña</label>
       <input
         type="password"
         class="form-control"
-        id="password"
-        name="password"
+        formControlName="repite_password"
       />
     </div>
-    <button type="submit" class="btn btn-login mt-2">Registrarse</button>
+    <div class="mb-3">
+      <label for="direccion" class="form-label">Direccion</label>
+      <input type="text" class="form-control" formControlName="direccion" />
+    </div>
+
+    <button
+      [disabled]="!formulario.valid"
+      type="submit"
+      class="btn btn-login mt-2"
+    >
+      Registrarse
+    </button>
   </form>
+</div>
+<div>
+  <p>{{ formulario.value | json }}</p>
+  <p>Valido: {{ formulario.valid }}</p>
+  <p>Dirty: {{ formulario.dirty }}</p>
 </div>

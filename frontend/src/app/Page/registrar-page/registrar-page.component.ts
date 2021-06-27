@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-registrar-page',
@@ -6,7 +7,35 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./registrar-page.component.css'],
 })
 export class RegistrarPageComponent implements OnInit {
-  constructor() {}
+  formulario: FormGroup;
+
+  constructor() {
+    this.formulario = new FormGroup({
+      nombre: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+      ]),
+      apellido: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+      ]),
+      email: new FormControl('', [
+        Validators.pattern(
+          /^(\D)+(\w)*((\.(\w)+)?)+@(\D)+(\w)*((\.(\D)+(\w)*)+)?(\.)[a-z]{2,}$/
+        ),
+      ]),
+      password: new FormControl(),
+      repite_password: new FormControl(),
+      direccion: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+      ]),
+    });
+  }
 
   ngOnInit(): void {}
+
+  onSubmit() {
+    console.log(this.formulario.value);
+  }
 }

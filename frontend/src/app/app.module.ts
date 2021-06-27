@@ -12,6 +12,7 @@ import { ErrorPageComponent } from './Page/error-page/error-page.component';
 import { CarritoPageComponent } from './Page/carrito-page/carrito-page.component';
 import { RegistrarPageComponent } from './Page/registrar-page/registrar-page.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,12 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     CarritoPageComponent,
     RegistrarPageComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, SweetAlert2Module],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    SweetAlert2Module,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
