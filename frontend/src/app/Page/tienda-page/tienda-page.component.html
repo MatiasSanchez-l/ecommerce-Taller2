@@ -1,0 +1,127 @@
+<section class="shop spad">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="shop__sidebar">
+          <div class="shop__sidebar__accordion">
+            <div class="accordion" id="accordionExample">
+              <div class="card">
+                <div class="card-heading">
+                  <a data-toggle="collapse" data-target="#collapseOne"
+                    >Categories</a
+                  >
+                </div>
+                <div
+                  id="collapseOne"
+                  class="collapse show"
+                  data-parent="#accordionExample"
+                >
+                  <div class="card-body">
+                    <div class="shop__sidebar__categories">
+                      <ul class="nice-scroll">
+                        <li><a href="#">Men (20)</a></li>
+                        <li><a href="#">Women (20)</a></li>
+                        <li><a href="#">Bags (20)</a></li>
+                        <li><a href="#">Clothing (20)</a></li>
+                        <li><a href="#">Shoes (20)</a></li>
+                        <li><a href="#">Accessories (20)</a></li>
+                        <li><a href="#">Kids (20)</a></li>
+                        <li><a href="#">Kids (20)</a></li>
+                        <li><a href="#">Kids (20)</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-9">
+        <div class="shop__product__option">
+          <div class="row justify-content-end">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <div class="shop__product__option__right">
+                <p>Ordenar por precio :</p>
+                <select>
+                  <option value="">Bajo a Alto</option>
+                  <option value="">Alto a Bajo</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <!-- aca iria el ngFor -->
+          <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="product__item">
+              <div
+                class="product__item__pic set-bg"
+                style="
+                  background-image: url(https://i.pinimg.com/564x/11/8c/ce/118cce074ea2b10d42d95a15cf3a5229.jpg);
+                "
+                [routerLink]="['/contacto']"
+              >
+                <!-- el routeLink de aca arriba seria el link que lleva al detalle del producto -->
+                <!-- el style de aca arriba es donde se setea la foto del producto -->
+              </div>
+              <div class="product__item__text">
+                <h6>Piqué Biker Jacket</h6>
+                <a href="#" class="add-cart">+ Agregar al carrito</a>
+                <h5>$67.24</h5>
+              </div>
+            </div>
+          </div>
+          <!-- aca terminaria el ngFor -->
+          <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="product__item">
+              <div
+                class="product__item__pic set-bg"
+                style="
+                  background-image: url(https://i.pinimg.com/564x/11/8c/ce/118cce074ea2b10d42d95a15cf3a5229.jpg);
+                "
+                [routerLink]="['/contacto']"
+              >
+                <!-- el routeLink de aca arriba seria el link que lleva al detalle del producto -->
+                <!-- el style de aca arriba es donde se setea la foto del producto -->
+              </div>
+              <div class="product__item__text">
+                <h6>Piqué Biker Jacket</h6>
+                <a href="#" class="add-cart">+ Agregar al carrito</a>
+                <h5>$67.24</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="product__item">
+              <div
+                class="product__item__pic set-bg"
+                style="
+                  background-image: url(https://i.pinimg.com/564x/11/8c/ce/118cce074ea2b10d42d95a15cf3a5229.jpg);
+                "
+                [routerLink]="['/contacto']"
+              >
+                <!-- el routeLink de aca arriba seria el link que lleva al detalle del producto -->
+                <!-- el style de aca arriba es donde se setea la foto del producto -->
+              </div>
+              <div class="product__item__text">
+                <h6>Piqué Biker Jacket</h6>
+                <a href="#" class="add-cart">+ Agregar al carrito</a>
+                <h5>$67.24</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(".collapse").on("shown.bs.collapse", function () {
+      $(this).prev().addClass("active");
+    });
+
+    $(".collapse").on("hidden.bs.collapse", function () {
+      $(this).prev().removeClass("active");
+    });
+  </script>
+</section>

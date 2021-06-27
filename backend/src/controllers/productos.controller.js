@@ -1,6 +1,5 @@
 const path = require('path');
 const AWS = require('aws-sdk');
-const { stringify } = require('querystring');
 require('dotenv').config({ path: path.join(__dirname, "../../.env") });
 
 AWS.config.update({
@@ -70,6 +69,7 @@ const borrarProducto = async(req, res) =>{
     };
 
     await dynamoClient.delete(params).promise();
+
     res.sendStatus(200);
     } catch (error) {
         console.log(error);
