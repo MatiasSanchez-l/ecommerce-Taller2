@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const router = Router();
+var authMiddleware = require('../Middleware/AuthMiddleware');
 const { getProductos, crearOModificarProducto, getProductoPorId, borrarProducto } = require('../controllers/productos.controller');
 
 router.route("")
@@ -9,9 +10,9 @@ router.route("/:id")
     .get(getProductoPorId);    
 
 router.route("")
-    .post(crearOModificarProducto);
+    .post(authMiddleware.Validar ,crearOModificarProducto);
 
 router.route("/:id")
-    .delete(borrarProducto);
+    .delete(authMiddleware.Validar ,borrarProducto);
 
 module.exports = router;

@@ -82,8 +82,8 @@ const registrarUsuario = (req, res) => {
 };
 
 const loguearUsuario = (req, res) => {
-  var email = req.body.email;
-  var contrasenia = req.body.contrasenia;
+  const email = req.body.email;
+  const contrasenia = req.body.contrasenia;
 
   var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails({
     Email: email,
@@ -116,8 +116,8 @@ const loguearUsuario = (req, res) => {
 };
 
 const desloguearUsuario = (req, res) => {
-  const email = req.body.email;
-
+  var { email } = req;
+  
   const accessToken = req.header("accessToken");
   const idToken = req.header("idToken");
   const refreshToken = req.header("refreshToken");

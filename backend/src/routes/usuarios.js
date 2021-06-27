@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const router = Router();
+var authMiddleware = require('../Middleware/AuthMiddleware');
 const { registrarUsuario, loguearUsuario, validar, desloguearUsuario } = require('../controllers/usuarios.controller');
 
 router.route("/registrar")
@@ -9,7 +10,7 @@ router.route("/loguear")
     .post(loguearUsuario);
 
 router.route("/desloguear")
-    .post(desloguearUsuario);
+    .post(authMiddleware.Validar ,desloguearUsuario);
 
 router.route("/validar")
     .post(validar);
