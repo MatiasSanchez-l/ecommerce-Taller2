@@ -8,7 +8,6 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config({ path: path.join(__dirname, "../../.env") });
 global.fetch = require("node-fetch");
 
-//string?
 const poolData = {
   region: process.env.AWS_DEFAULT_REGION,
   UserPoolId: process.env.AWS_USER_POOL_ID,
