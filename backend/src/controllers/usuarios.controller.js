@@ -173,57 +173,8 @@ const desloguearUsuario = (req, res) => {
   });
 };
 
-const validar = (req, res) => {
-  request(
-    {
-      url: `https://cognito
-        idp.${process.env.AWS_DEFAULT_REGION}.amazonaws.com/${process.env.AWS_USER_POOL_ID}/.well-known/jwks.json`,
-      json: true,
-    },
-    function (error, response, body) {
-      if (!error && response.statusCode === 200) {
-        pems = {};
-        var keys = body["keys"];
-        for (var i = 0; i < keys.length; i++) {
-          var key_id = keys[i].kid;
-          var modulus = keys[i].n;
-          var exponent = keys[i].e;
-          var key_type = keys[i].kty;
-          var jwk = { kty: key_type, n: modulus, e: exponent };
-          var pem = jwkToPem(jwk);
-          pems[key_id] = pem;
-        }
-        var decodedJwt = jwt.decode(token, { complete: true });
-        if (!decodedJwt) {
-          console.log("No es un JWT token valido");
-          res.status(500).json({ mensaje: "No es un JWT token valido" });
-        }
-        var kid = decodedJwt.header.kid;
-        var pem = pems[kid];
-        if (!pem) {
-          console.log("Token invalido");
-          res.status(500).json({ mensaje: "Token invalido" });
-        }
-        jwt.verify(token, pem, function (err, payload) {
-          if (err) {
-            console.log("Token invalido");
-            res.status(500).json({ mensaje: "Token invalido" });
-          } else {
-            console.log("Token invalido");
-            res.status(500).json({ mensaje: "Token invalido" });
-          }
-        });
-      } else {
-        console.log("Error!No es posible descargar JWKs");
-        callback(error);
-      }
-    }
-  );
-};
-
 module.exports = {
   registrarUsuario,
   loguearUsuario,
-  validar,
   desloguearUsuario,
 };
