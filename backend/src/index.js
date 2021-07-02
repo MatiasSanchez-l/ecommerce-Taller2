@@ -1,4 +1,5 @@
 const path = require("path");
+var cors = require('cors');
 require("dotenv").config({ path: path.join(__dirname, "../.env") });
 const express = require("express");
 const app = express();
@@ -6,6 +7,7 @@ const app = express();
 //middlewares
 
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 
 //rutas
