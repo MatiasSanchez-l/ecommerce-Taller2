@@ -62,15 +62,12 @@ const registrarUsuario = (req, res) => {
             return res
               .status(500)
               .json({ error: "Algo salio mal.", mensaje: err.message });
-            
           }
 
           return res.sendStatus(201);
-          
         } catch (error) {
           console.log(error);
           return res.status(500).json({ erro: "Algo salio maaaaaal." });
-          
         }
       }
     );
@@ -116,7 +113,7 @@ const loguearUsuario = (req, res) => {
 
 const desloguearUsuario = (req, res) => {
   var { email } = req;
-  
+
   const accessToken = req.header("accessToken");
   const idToken = req.header("idToken");
   const refreshToken = req.header("refreshToken");
