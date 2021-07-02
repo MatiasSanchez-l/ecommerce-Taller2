@@ -53,12 +53,15 @@
         </div>
         <div class="row">
           <!-- aca iria el ngFor -->
-          <div class="col-lg-4 col-md-6 col-sm-6">
+          <div
+            class="col-lg-4 col-md-6 col-sm-6"
+            *ngFor="let producto of productos"
+          >
             <div class="product__item">
               <div
                 class="product__item__pic set-bg"
                 style="
-                  background-image: url(https://i.pinimg.com/564x/11/8c/ce/118cce074ea2b10d42d95a15cf3a5229.jpg);
+                  background-image: url('{{ producto.imagen }}');
                 "
                 [routerLink]="['/contacto']"
               >
@@ -66,51 +69,13 @@
                 <!-- el style de aca arriba es donde se setea la foto del producto -->
               </div>
               <div class="product__item__text">
-                <h6>Piqué Biker Jacket</h6>
-                <a href="#" class="add-cart">+ Agregar al carrito</a>
-                <h5>$67.24</h5>
+                <h6>{{ producto.nombre }}</h6>
+                <a class="add-cart">+ Agregar al carrito</a>
+                <h5>{{ producto.precio | currency: "ARS":"$":"1.0-2" }}</h5>
               </div>
             </div>
           </div>
           <!-- aca terminaria el ngFor -->
-          <div class="col-lg-4 col-md-6 col-sm-6">
-            <div class="product__item">
-              <div
-                class="product__item__pic set-bg"
-                style="
-                  background-image: url(https://i.pinimg.com/564x/11/8c/ce/118cce074ea2b10d42d95a15cf3a5229.jpg);
-                "
-                [routerLink]="['/contacto']"
-              >
-                <!-- el routeLink de aca arriba seria el link que lleva al detalle del producto -->
-                <!-- el style de aca arriba es donde se setea la foto del producto -->
-              </div>
-              <div class="product__item__text">
-                <h6>Piqué Biker Jacket</h6>
-                <a href="#" class="add-cart">+ Agregar al carrito</a>
-                <h5>$67.24</h5>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-sm-6">
-            <div class="product__item">
-              <div
-                class="product__item__pic set-bg"
-                style="
-                  background-image: url(https://i.pinimg.com/564x/11/8c/ce/118cce074ea2b10d42d95a15cf3a5229.jpg);
-                "
-                [routerLink]="['/contacto']"
-              >
-                <!-- el routeLink de aca arriba seria el link que lleva al detalle del producto -->
-                <!-- el style de aca arriba es donde se setea la foto del producto -->
-              </div>
-              <div class="product__item__text">
-                <h6>Piqué Biker Jacket</h6>
-                <a href="#" class="add-cart">+ Agregar al carrito</a>
-                <h5>$67.24</h5>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

@@ -13,6 +13,8 @@ import { CarritoPageComponent } from './Page/carrito-page/carrito-page.component
 import { RegistrarPageComponent } from './Page/registrar-page/registrar-page.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ProductoService } from './Service/producto.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -31,8 +33,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     SweetAlert2Module,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [ProductoService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
