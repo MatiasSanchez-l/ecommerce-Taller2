@@ -19,7 +19,7 @@ const getProductos = async (req, res) => {
       TableName: TABLE_NAME,
     };
     const productos = await dynamoClient.scan(params).promise();
-    res.status(200).json(productos);
+    res.status(200).json(productos.Items);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ erro: "Algo salio mal." });
