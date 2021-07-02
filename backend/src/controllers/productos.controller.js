@@ -22,7 +22,7 @@ const getProductos = async (req, res) => {
         res.status(200).json(productos);
     } catch (error) {
         console.log(error);
-        res.status(500).json({erro: 'Algo salio mal.'});
+        return res.status(500).json({erro: 'Algo salio mal.'});
     }
     
 };
@@ -37,10 +37,10 @@ const getProductoPorId = async (req, res) =>{
         }
     };
     let response= await dynamoClient.get(params).promise();
-    res.status(200).json(response);
+    return res.status(200).json(response);
     } catch (error) {
         console.log(error);
-        res.status(500).json({erro: 'Algo salio mal.'});
+        return res.status(500).json({erro: 'Algo salio mal.'});
     }
     
 };
@@ -55,10 +55,10 @@ const crearProducto = async(req, res) =>{
         Item: req.body
     };
     await dynamoClient.put(params).promise();
-    res.sendStatus(201);
+    return res.sendStatus(201);
     } catch (error) {
         console.log(error);
-        res.status(500).json({erro: 'Algo salio mal.'});
+        return res.status(500).json({erro: 'Algo salio mal.'});
     }
     
 };
@@ -70,10 +70,10 @@ const modificarProducto = async(req, res) =>{
         Item: req.body
     };
     await dynamoClient.put(params).promise();
-    res.sendStatus(200);
+    return res.sendStatus(200);
     } catch (error) {
         console.log(error);
-        res.status(500).json({erro: 'Algo salio mal.'});
+        return res.status(500).json({erro: 'Algo salio mal.'});
     }
     
 };
@@ -90,10 +90,10 @@ const borrarProducto = async(req, res) =>{
 
     await dynamoClient.delete(params).promise();
 
-    res.sendStatus(200);
+    return res.sendStatus(200);
     } catch (error) {
         console.log(error);
-        res.status(500).json({erro: 'Algo salio mal.'});
+        return res.status(500).json({erro: 'Algo salio mal.'});
     }
 };
 

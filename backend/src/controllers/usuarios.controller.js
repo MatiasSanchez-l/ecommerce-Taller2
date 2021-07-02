@@ -59,24 +59,24 @@ const registrarUsuario = (req, res) => {
         try {
           if (err) {
             console.log(err);
-            res
+            return res
               .status(500)
               .json({ error: "Algo salio mal.", mensaje: err.message });
-            return;
+            
           }
 
-          res.sendStatus(201);
-          return;
+          return res.sendStatus(201);
+          
         } catch (error) {
           console.log(error);
-          res.status(500).json({ erro: "Algo salio maaaaaal." });
-          return;
+          return res.status(500).json({ erro: "Algo salio maaaaaal." });
+          
         }
       }
     );
   } catch (error) {
     console.log(error);
-    res.status(500).json({ erro: "Algo salio mal." });
+    return res.status(500).json({ erro: "Algo salio mal." });
   }
 };
 
@@ -102,14 +102,14 @@ const loguearUsuario = (req, res) => {
       var idToken = result.getIdToken().getJwtToken();
       var refreshToken = result.getRefreshToken().getToken();
 
-      res.status(200).json({
+      return res.status(200).json({
         accessToken: accessToken,
         idToken: idToken,
         refreshToken: refreshToken,
       });
     },
     onFailure: function (err) {
-      res.status(500).json({ error: "Algo salio mal.", mensaje: err });
+      return res.status(500).json({ error: "Algo salio mal.", mensaje: err });
     },
   });
 };
@@ -154,18 +154,18 @@ const desloguearUsuario = (req, res) => {
     if (session.isValid()) {
       usuarioCognito.globalSignOut({
         onFailure: (e) => {
-          res.status(400).json({
+          return res.status(400).json({
             mensaje: e.message,
           });
         },
         onSuccess: (r) => {
-          res.status(200).json({
+          return res.status(200).json({
             mensaje: "Se cerro la sesion correctamente",
           });
         },
       });
     } else {
-      res.status(400).json({
+      return res.status(400).json({
         mensaje: "Error. Sesion invalida",
       });
     }
