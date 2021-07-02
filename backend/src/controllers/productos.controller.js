@@ -1,5 +1,7 @@
 const path = require('path');
 const AWS = require('aws-sdk');
+const { json } = require('body-parser');
+const { v4: uuidv4 } = require('uuid');
 require('dotenv').config({ path: path.join(__dirname, "../../.env") });
 
 AWS.config.update({
@@ -43,14 +45,32 @@ const getProductoPorId = async (req, res) =>{
     
 };
 
-const crearOModificarProducto = async(req, res) =>{
+
+
+const crearProducto = async(req, res) =>{
+    try {
+    req.body.id = uuidv4();
+    const params = {
+        TableName: TABLE_NAME,
+        Item: req.body
+    };
+    await dynamoClient.put(params).promise();
+    res.sendStatus(201);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({erro: 'Algo salio mal.'});
+    }
+    
+};
+
+const modificarProducto = async(req, res) =>{
     try {
     const params = {
         TableName: TABLE_NAME,
         Item: req.body
     };
-    let response= await dynamoClient.put(params).promise();
-    res.status(201).json(response);
+    await dynamoClient.put(params).promise();
+    res.sendStatus(200);
     } catch (error) {
         console.log(error);
         res.status(500).json({erro: 'Algo salio mal.'});
@@ -81,6 +101,7 @@ module.exports = {
     dynamoClient,
     getProductos,
     getProductoPorId,
-    crearOModificarProducto,
+    crearProducto,
+    modificarProducto,
     borrarProducto
 };
