@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CarritoService } from 'src/app/Service/carrito.service';
 
 @Component({
   selector: 'app-header-page',
@@ -6,7 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header-page.component.css'],
 })
 export class HeaderPageComponent implements OnInit {
-  constructor() {}
 
-  ngOnInit(): void {}
+  cantidadCarrito: number = 0;
+
+  constructor(private carritoService: CarritoService) {
+    console.log(
+      'cantidad del carrito' +
+        this.carritoService.devolverCarritoActual().length
+    );
+  }
+
+  ngOnInit(): void {
+    console.log(
+      'cantidad del carrito' +
+        this.carritoService.devolverCarritoActual().length
+    );
+  }
 }

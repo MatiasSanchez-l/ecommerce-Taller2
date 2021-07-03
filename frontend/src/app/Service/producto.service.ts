@@ -10,11 +10,6 @@ export class ProductoService {
 
   constructor(private httpClient: HttpClient) {}
 
-  setProducto(producto: Producto[]) {
-    console.log('entramos a setProductos');
-    this.productos = producto;
-  }
-
   getProductos(): Observable<Producto[]> {
     console.log('entramos a getProductos');
 
@@ -22,9 +17,10 @@ export class ProductoService {
       environment.productionUrl + '/producto'
     );
   }
-  obtenerProductos() {
-    console.log('entramos a obtener productos');
 
-    return this.getProductos();
+  getProductosById(id: string): Observable<Producto> {
+    return this.httpClient.get<Producto>(
+      environment.productionUrl + '/producto/' + id
+    );
   }
 }
