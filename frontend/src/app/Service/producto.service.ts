@@ -18,6 +18,10 @@ export class ProductoService {
     );
   }
 
+  getTresProductos(){
+    this.productos
+  }
+
   getProductosById(id: string): Observable<Producto> {
     return this.httpClient.get<Producto>(
       environment.productionUrl + '/producto/' + id
