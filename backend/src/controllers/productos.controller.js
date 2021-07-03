@@ -36,7 +36,7 @@ const getProductoPorId = async (req, res) => {
       },
     };
     let response = await dynamoClient.get(params).promise();
-    return res.status(200).json(response);
+    return res.status(200).json(response.Item);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ erro: "Algo salio mal." });

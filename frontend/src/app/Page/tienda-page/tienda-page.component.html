@@ -70,7 +70,9 @@
               </div>
               <div class="product__item__text">
                 <h6>{{ producto.nombre }}</h6>
-                <a class="add-cart">+ Agregar al carrito</a>
+                <a (click)="agregarAlCarrito(producto.id)" class="add-cart"
+                  >+ Agregar al carrito</a
+                >
                 <h5>{{ producto.precio | currency: "ARS":"$":"1.0-2" }}</h5>
               </div>
             </div>
