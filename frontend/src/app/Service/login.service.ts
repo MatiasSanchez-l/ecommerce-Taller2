@@ -28,12 +28,10 @@ export class LoginService {
         this.refreshToken = datos.refreshToken;
         this.logueado = true;
         this.router.navigate(['/home']);
-        return this.logueado;
       },
       error: error => {
         this.errorMessage = error.message;
         console.error('error: ' + this.errorMessage);
-        return this.logueado;
       }
     });
   }
