@@ -17,11 +17,9 @@ import { ProductoService } from './Service/producto.service';
 import { HttpClientModule } from '@angular/common/http';
 import { DetailPageComponent } from './Page/detail-page/detail-page.component';
 import { UsuarioService } from './Service/usuario.service';
-<<<<<<< HEAD
 import { LoginService } from './Service/login.service';
-=======
 import { CarritoService } from './Service/carrito.service';
->>>>>>> develop
+
 
 @NgModule({
   declarations: [
@@ -44,11 +42,7 @@ import { CarritoService } from './Service/carrito.service';
     HttpClientModule,
     FormsModule
   ],
-<<<<<<< HEAD
-  providers: [ProductoService, UsuarioService, LoginService],
-=======
-  providers: [ProductoService, UsuarioService, CarritoService],
->>>>>>> develop
+  providers: [ProductoService, UsuarioService, LoginService, CarritoService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
