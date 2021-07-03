@@ -16,6 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ProductoService } from './Service/producto.service';
 import { HttpClientModule } from '@angular/common/http';
 import { DetailPageComponent } from './Page/detail-page/detail-page.component';
+import { UsuarioService } from './Service/usuario.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { DetailPageComponent } from './Page/detail-page/detail-page.component';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [ProductoService],
+  providers: [ProductoService, UsuarioService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
