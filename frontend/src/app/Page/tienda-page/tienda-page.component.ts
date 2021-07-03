@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Producto } from 'src/app/Model/producto.model';
+import { CarritoService } from 'src/app/Service/carrito.service';
 import { ProductoService } from 'src/app/Service/producto.service';
 
 @Component({
@@ -10,27 +12,28 @@ import { ProductoService } from 'src/app/Service/producto.service';
 export class TiendaPageComponent implements OnInit {
   productos: Producto[] = [];
 
-  constructor(private productosService: ProductoService) {}
+  constructor(
+    private productosService: ProductoService,
+    private carritoService: CarritoService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.onLoad();
-    this.productosService.obtenerProductos();
   }
 
   onLoad(): void {
     console.log('entramos a ngOnInit productos');
-    /*this.productosService.getProductos().subscribe((data) => {
-      console.log('entramos a this.productos = productos; ');
-      this.productos = data;
-      console.log(this.objectKeys(data),data[0])
-      console.log('entramos a tthis.productosService.setProducto(productos); ');
-      this.productosService.setProducto(data);
-    });*/
-
     this.productosService.getProductos().subscribe((data) => {
       this.productos = data;
-
-      console.log(this.productos)
     });
+  }
+
+  agregarAlCarrito(id: string) {
+    console.log('entramos a agregarCarrito');
+    this.carritoService.agregarProductoAlCarrito(id);
+    this.carritoService.setCarrito(this.carritoService.devolverCarritoActual());
+    console.log('agregamos prodcuto a agregarCarrito');
+    this.router.navigate(['carrito']);
   }
 }

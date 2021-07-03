@@ -37,9 +37,22 @@
           <a class="nav-link fs-6" [routerLink]="['/contacto']">Contacto</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link fs-6" [routerLink]="['/carrito']"
-            ><i class="fas fa-shopping-cart"></i
-          ></a>
+          <a class="nav-link fs-6 position-relative" [routerLink]="['/carrito']">
+            <i class="fas fa-shopping-cart"> </i>
+
+            <span
+              class="
+                position-absolute
+                top-0
+                start-100
+                translate-middle
+                badge
+                rounded-pill
+                bg-danger">
+              1
+              <span class="visually-hidden">unread messages</span>
+            </span>
+          </a>
         </li>
       </ul>
     </div>
