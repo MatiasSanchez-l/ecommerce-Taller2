@@ -12,11 +12,12 @@ import { ErrorPageComponent } from './Page/error-page/error-page.component';
 import { CarritoPageComponent } from './Page/carrito-page/carrito-page.component';
 import { RegistrarPageComponent } from './Page/registrar-page/registrar-page.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductoService } from './Service/producto.service';
 import { HttpClientModule } from '@angular/common/http';
 import { DetailPageComponent } from './Page/detail-page/detail-page.component';
 import { UsuarioService } from './Service/usuario.service';
+import { LoginService } from './Service/login.service';
 
 @NgModule({
   declarations: [
@@ -37,8 +38,9 @@ import { UsuarioService } from './Service/usuario.service';
     SweetAlert2Module,
     ReactiveFormsModule,
     HttpClientModule,
+    FormsModule
   ],
-  providers: [ProductoService, UsuarioService],
+  providers: [ProductoService, UsuarioService, LoginService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
