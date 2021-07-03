@@ -19,6 +19,7 @@ import { DetailPageComponent } from './Page/detail-page/detail-page.component';
 import { UsuarioService } from './Service/usuario.service';
 import { LoginService } from './Service/login.service';
 import { CarritoService } from './Service/carrito.service';
+import { RegistrarService } from './Service/registrar.service';
 
 
 @NgModule({
@@ -42,7 +43,7 @@ import { CarritoService } from './Service/carrito.service';
     HttpClientModule,
     FormsModule
   ],
-  providers: [ProductoService, UsuarioService, LoginService, CarritoService],
+  providers: [ProductoService, UsuarioService, LoginService, CarritoService, RegistrarService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
