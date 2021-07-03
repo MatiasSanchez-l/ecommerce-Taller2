@@ -1,7 +1,10 @@
 <div class="bg-login">
   <ul class="nav justify-content-end login">
-    <li class="nav-item">
+    <li class="nav-item" *ngIf="!isLogueado()">
       <p [routerLink]="['/login']">Iniciar Sesion</p>
+    </li>
+    <li class="nav-item" *ngIf="isLogueado()">
+      <p style="cursor: pointer" (click)="cerrarSesion()">Cerrar Sesion</p>
     </li>
     <li class="nav-item">
       <p [routerLink]="['/registrar']">Registrarse</p>
