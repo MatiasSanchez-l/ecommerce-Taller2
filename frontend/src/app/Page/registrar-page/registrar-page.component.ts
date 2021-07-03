@@ -22,12 +22,13 @@ export class RegistrarPageComponent implements OnInit {
         Validators.minLength(4),
       ]),
       email: new FormControl('', [
+        Validators.required,
         Validators.pattern(
           /^(\D)+(\w)*((\.(\w)+)?)+@(\D)+(\w)*((\.(\D)+(\w)*)+)?(\.)[a-z]{2,}$/
         ),
       ]),
-      password: new FormControl(),
-      repite_password: new FormControl(),
+      password: new FormControl('', Validators.required),
+      repite_password: new FormControl('', Validators.required),
       direccion: new FormControl('', [
         Validators.required,
         Validators.minLength(4),
