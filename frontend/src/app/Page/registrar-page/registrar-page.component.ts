@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Usuario } from 'src/app/Model/usuario.model.ts';
+import { RegistrarService } from 'src/app/Service/registrar.service';
 
 @Component({
   selector: 'app-registrar-page',
@@ -8,8 +10,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class RegistrarPageComponent implements OnInit {
   formulario: FormGroup;
-
-  constructor() {
+  usuario: Usuario;
+  constructor(private registrarServicio: RegistrarService) {
     this.formulario = new FormGroup({
       nombre: new FormControl('', [
         Validators.required,
@@ -34,6 +36,18 @@ export class RegistrarPageComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  registrar(){
+    const email = this.formulario.value.email;
+    const nombre = this.formulario.value.nombre;
+    const apellido = this.formulario.value.apellido;
+    const direccion = this.formulario.value.direccion;
+    const contrasenia = this.formulario.value.password;
+    
+    this.usuario = new Usuario(email, contrasenia, nombre, apellido, direccion);
+
+    this.registrarServicio.registrarUsuario(this.usuario);
+  }
 
   onSubmit() {
     console.log(this.formulario.value);
