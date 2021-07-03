@@ -15,6 +15,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProductoService } from './Service/producto.service';
 import { HttpClientModule } from '@angular/common/http';
+import { DetailPageComponent } from './Page/detail-page/detail-page.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
     ErrorPageComponent,
     CarritoPageComponent,
     RegistrarPageComponent,
+    DetailPageComponent,
   ],
   imports: [
     BrowserModule,
