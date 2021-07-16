@@ -24,6 +24,43 @@ const registrarUsuario = (req, res) => {
     var direccion = req.body.direccion;
     var contrasenia = req.body.contrasenia;
 
+    let errores = [];
+    if (
+      !nombre ||
+      !apellido ||
+      !email ||
+      !direccion ||
+      !contrasenia
+    ) {
+      if(!nombre){
+        errores.push("Por favor llene el campo nombre. ");
+      }
+
+      if(!apellido){
+        errores.push("Por favor llene el campo apellido. ");
+      }
+
+      if(!email){
+        errores.push("Por favor llene el campo email. ");
+      }
+
+      if(!direccion){
+        errores.push("Por favor llene el campo direccion. ");
+      }
+      
+      if(!contrasenia){
+        errores.push("Por favor llene el campo contrasenia. ");
+      }
+
+      return res.status(400).json(errores);
+    }
+
+    if(contrasenia.toString().length < 8){
+      errores.push("La contraseña debe ser tener minimo 8 caracteres y letras minusculas. ");
+
+      return res.status(400).json(errores);
+    }
+
     var listaAtributos = [];
     listaAtributos.push(
       new AmazonCognitoIdentity.CognitoUserAttribute({
