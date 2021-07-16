@@ -29,9 +29,7 @@ export class DetailPageComponent implements OnInit {
   }
 
   agregarAlCarrito(id: string) {
-    console.log("entramos a agregarCarrito")
     this.carritoService.agregarProductoAlCarrito(id);
-    console.log("agregamos prodcuto a agregarCarrito")
     this.router.navigate(['carrito']);
   }
 }

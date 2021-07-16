@@ -23,17 +23,14 @@ export class TiendaPageComponent implements OnInit {
   }
 
   onLoad(): void {
-    console.log('entramos a ngOnInit productos');
     this.productosService.getProductos().subscribe((data) => {
       this.productos = data;
     });
   }
 
   agregarAlCarrito(id: string) {
-    console.log('entramos a agregarCarrito');
     this.carritoService.agregarProductoAlCarrito(id);
     this.carritoService.setCarrito(this.carritoService.devolverCarritoActual());
-    console.log('agregamos prodcuto a agregarCarrito');
     this.router.navigate(['carrito']);
   }
 }
