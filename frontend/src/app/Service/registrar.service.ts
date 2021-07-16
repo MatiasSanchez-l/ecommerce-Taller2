@@ -32,13 +32,22 @@ export class RegistrarService {
                 (error: any)=>{
                     this.errorMessage = error.message;
                     console.error('error: ' + this.errorMessage);
-
+                    console.log(error);
+                    if(error.status === 400){
+                        Swal.fire({
+                            title: 'Error!',
+                            text: error.error,
+                            icon: 'error',
+                            confirmButtonText: 'Cool',
+                          });
+                    }else{
                     Swal.fire({
                         title: 'Error!',
                         text: 'Ocurrio un error en el registro, vuelva a intentarlo!',
                         icon: 'error',
                         confirmButtonText: 'Cool',
                       });
+                    }
                 });
     }
 }

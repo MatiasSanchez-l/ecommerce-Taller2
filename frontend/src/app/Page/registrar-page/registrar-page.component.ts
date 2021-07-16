@@ -33,7 +33,10 @@ export class RegistrarPageComponent implements OnInit {
         Validators.required,
         Validators.minLength(8),
       ]),
-      repite_password: new FormControl('', Validators.required),
+      repite_password: new FormControl('',[
+      Validators.required,
+      Validators.minLength(8),
+    ]),
       direccion: new FormControl('', [
         Validators.required,
         Validators.minLength(4),
