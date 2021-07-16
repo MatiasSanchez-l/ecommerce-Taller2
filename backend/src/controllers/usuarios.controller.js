@@ -25,7 +25,7 @@ const registrarUsuario = (req, res) => {
     var contrasenia = req.body.contrasenia;
 
     let errores = [];
-    
+
     if (
       !nombre ||
       !apellido ||
@@ -34,23 +34,23 @@ const registrarUsuario = (req, res) => {
       !contrasenia
     ) {
       if(!nombre){
-        errores.push("Por favor llene el campo nombre. ");
+        errores.push("Por favor complete el campo nombre. ");
       }
 
       if(!apellido){
-        errores.push("Por favor llene el campo apellido. ");
+        errores.push("Por favor complete el campo apellido. ");
       }
 
       if(!email){
-        errores.push("Por favor llene el campo email. ");
+        errores.push("Por favor complete el campo email. ");
       }
 
       if(!direccion){
-        errores.push("Por favor llene el campo direccion. ");
+        errores.push("Por favor complete el campo direccion. ");
       }
       
       if(!contrasenia){
-        errores.push("Por favor llene el campo contrasenia. ");
+        errores.push("Por favor complete el campo contrasenia. ");
       }
 
       return res.status(400).json(errores);
@@ -118,6 +118,23 @@ const registrarUsuario = (req, res) => {
 const loguearUsuario = (req, res) => {
   const email = req.body.email;
   const contrasenia = req.body.contrasenia;
+
+  if (
+    !email ||
+    !contrasenia
+  ) {
+    if(!email){
+      errores.push("Por favor complete el campo email. ");
+    }
+
+    return res.status(400).json(errores);
+  }
+
+  if(contrasenia.toString().length < 8 || /^[a-z]+$/.test(contrasenia)){
+    errores.push("La contraseña debe ser tener minimo 8 caracteres y debe tener al menos una letra minuscula.");
+
+    return res.status(400).json(errores);
+  }
 
   var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails({
     Email: email,
