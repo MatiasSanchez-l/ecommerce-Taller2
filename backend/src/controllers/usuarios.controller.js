@@ -181,6 +181,16 @@ const desloguearUsuario = (req, res) => {
   const idToken = req.header("idToken");
   const refreshToken = req.header("refreshToken");
 
+  if (
+    !accessToken ||
+    !idToken ||
+    !refreshToken
+  ) {
+    return res.status(400).json({
+      mensaje: "Error de tokens.",
+    });
+  }
+
   const nuevoAccessToken = new AmazonCognitoIdentity.CognitoAccessToken({
     AccessToken: accessToken,
   });
