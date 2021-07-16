@@ -28,6 +28,23 @@ export class TiendaPageComponent implements OnInit {
     });
   }
 
+  onChange($event: any) {
+    let orden = $event.target.value;
+    console.log(this.productos);
+    const ordenados = this.productos;
+    if (orden === 1) {
+      this.productos = ordenados.sort((a, b) =>
+        a.precio < b.precio ? -1 : a.precio > b.precio ? 1 : 0
+      );
+    }
+    if (orden === 2) {
+      this.productos = ordenados.sort((a, b) =>
+        a.precio < b.precio ? 1 : a.precio > b.precio ? -1 : 0
+      );
+    }
+    console.log(this.productos);
+  }
+
   agregarAlCarrito(id: string) {
     this.carritoService.agregarProductoAlCarrito(id);
     this.carritoService.setCarrito(this.carritoService.devolverCarritoActual());
