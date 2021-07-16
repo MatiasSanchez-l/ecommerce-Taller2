@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Usuario } from 'src/app/Model/usuario.model.ts';
 import { RegistrarService } from 'src/app/Service/registrar.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-registrar-page',
@@ -27,7 +29,10 @@ export class RegistrarPageComponent implements OnInit {
           /^(\D)+(\w)*((\.(\w)+)?)+@(\D)+(\w)*((\.(\D)+(\w)*)+)?(\.)[a-z]{2,}$/
         ),
       ]),
-      password: new FormControl('', Validators.required),
+      password: new FormControl('',[
+        Validators.required,
+        Validators.minLength(8),
+      ]),
       repite_password: new FormControl('', Validators.required),
       direccion: new FormControl('', [
         Validators.required,
@@ -44,10 +49,20 @@ export class RegistrarPageComponent implements OnInit {
     const apellido = this.formulario.value.apellido;
     const direccion = this.formulario.value.direccion;
     const contrasenia = this.formulario.value.password;
-    
-    this.usuario = new Usuario(email, contrasenia, nombre, apellido, direccion);
+    const contraseniaRepetida = this.formulario.value.repite_password;
 
-    this.registrarServicio.registrarUsuario(this.usuario);
+    if(contrasenia != contraseniaRepetida){
+      Swal.fire({
+        title: 'Error!',
+        text: 'Las contraseñas no coinciden!',
+        icon: 'error',
+        confirmButtonText: 'Cool',
+      });
+    }else{
+      this.usuario = new Usuario(email, contrasenia, nombre, apellido, direccion);
+
+      this.registrarServicio.registrarUsuario(this.usuario);
+    }
   }
 
   onSubmit() {
