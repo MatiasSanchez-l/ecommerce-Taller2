@@ -127,6 +127,14 @@ const loguearUsuario = (req, res) => {
       errores.push("Por favor complete el campo email. ");
     }
 
+    if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)){
+      errores.push("Por favor ingrese un email valido. ");
+    }
+
+    if(!contrasenia){
+      errores.push("Por favor complete el campo contrasenia. ");
+    }
+
     return res.status(400).json(errores);
   }
 
