@@ -14,7 +14,6 @@ export class CarritoPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.carrito = this.carritoService.devolverCarritoActual();
-    console.log(this.carrito)
   }
 
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Producto } from 'src/app/Model/producto.model';
+import { ProductoService } from 'src/app/Service/producto.service';
 
 @Component({
   selector: 'app-home-page',
@@ -6,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-page.component.css'],
 })
 export class HomePageComponent implements OnInit {
-  constructor() {}
+  productos: Producto[] = [];
+  productoAMostrar: Producto[]=[];
+  constructor(private productosService: ProductoService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.productos = this.productosService.getTresProductos();
+    this.productoAMostrar.push(this.productosService.getRandomProduct());
+  }
+
 }

@@ -18,8 +18,30 @@ export class ProductoService {
     );
   }
 
-  getTresProductos(){
-    this.productos
+  getTresProductos() {
+    this.getProductos().subscribe((data) => {
+      this.productos = data;
+      console.log(data);
+
+    });
+    let tresProductos: Producto[] = [];
+    tresProductos.push(
+      this.productos[Math.floor(Math.random() * this.productos.length)]
+    );
+    tresProductos.push(
+      this.productos[Math.floor(Math.random() * this.productos.length)]
+    );
+    tresProductos.push(
+      this.productos[Math.floor(Math.random() * this.productos.length)]
+    );
+    return tresProductos;
+  }
+
+  getRandomProduct(){
+    this.getProductos().subscribe((data) => {
+      this.productos = data;
+    });
+    return this.productos[Math.floor(Math.random() * this.productos.length)];
   }
 
   getProductosById(id: string): Observable<Producto> {
