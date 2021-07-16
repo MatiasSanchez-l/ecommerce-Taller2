@@ -25,6 +25,7 @@ const registrarUsuario = (req, res) => {
     var contrasenia = req.body.contrasenia;
 
     let errores = [];
+    
     if (
       !nombre ||
       !apellido ||
@@ -55,8 +56,8 @@ const registrarUsuario = (req, res) => {
       return res.status(400).json(errores);
     }
 
-    if(contrasenia.toString().length < 8){
-      errores.push("La contraseña debe ser tener minimo 8 caracteres y letras minusculas. ");
+    if(contrasenia.toString().length < 8 || /^[a-z]+$/.test(contrasenia)){
+      errores.push("La contraseña debe ser tener minimo 8 caracteres y debe tener al menos una letra minuscula.");
 
       return res.status(400).json(errores);
     }
