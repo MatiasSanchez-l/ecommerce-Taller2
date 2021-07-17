@@ -9,12 +9,11 @@ import { ProductoService } from 'src/app/Service/producto.service';
 })
 export class HomePageComponent implements OnInit {
   productos: Producto[] = [];
-  productoAMostrar: Producto[]=[];
+  productoAMostrar: Producto[] = [];
   constructor(private productosService: ProductoService) {}
 
   ngOnInit(): void {
     this.productos = this.productosService.getTresProductos();
     this.productoAMostrar.push(this.productosService.getRandomProduct());
   }
-
 }

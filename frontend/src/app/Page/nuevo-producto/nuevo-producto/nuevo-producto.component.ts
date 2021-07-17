@@ -6,20 +6,16 @@ import { LoginService } from 'src/app/Service/login.service';
 @Component({
   selector: 'app-nuevo-producto',
   templateUrl: './nuevo-producto.component.html',
-  styleUrls: ['./nuevo-producto.component.css']
+  styleUrls: ['./nuevo-producto.component.css'],
 })
 export class NuevoProductoComponent implements OnInit {
-
-  constructor(private loginService: LoginService,
-    private router: Router) { }
+  constructor(private loginService: LoginService, private router: Router) {}
 
   ngOnInit(): void {
-    if(!this.loginService.isLogueado()){
+    if (!this.loginService.isLogueado()) {
       this.router.navigate(['/home']);
     }
   }
-  
-  registrar(form: NgForm){
 
-  }
+  registrar(form: NgForm) {}
 }

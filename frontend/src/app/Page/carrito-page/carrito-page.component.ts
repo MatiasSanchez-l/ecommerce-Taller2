@@ -32,7 +32,7 @@ export class CarritoPageComponent implements OnInit {
     this.carritoService.calcularValorTotalDelCarrito();
     this.ngOnInit();
   }
-  borrarProductoDelCarrito(id:string){
+  borrarProductoDelCarrito(id: string) {
     this.carritoService.borrarProductoDelCarrito(id);
     this.ngOnInit();
   }

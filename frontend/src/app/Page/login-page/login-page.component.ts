@@ -12,11 +12,10 @@ import { LoginService } from 'src/app/Service/login.service';
 export class LoginPageComponent implements OnInit {
   usuario: Usuario;
   logueado: boolean = false;
-  constructor(private loginService: LoginService,
-    private router: Router) {}
+  constructor(private loginService: LoginService, private router: Router) {}
 
   ngOnInit(): void {
-    if(this.loginService.isLogueado()){
+    if (this.loginService.isLogueado()) {
       this.router.navigate(['/home']);
     }
   }

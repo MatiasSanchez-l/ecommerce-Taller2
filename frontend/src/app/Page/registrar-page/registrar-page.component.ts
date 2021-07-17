@@ -14,9 +14,11 @@ import Swal from 'sweetalert2';
 export class RegistrarPageComponent implements OnInit {
   formulario: FormGroup;
   usuario: Usuario;
-  constructor(private registrarServicio: RegistrarService,
+  constructor(
+    private registrarServicio: RegistrarService,
     private loginService: LoginService,
-    private router: Router) {
+    private router: Router
+  ) {
     this.formulario = new FormGroup({
       nombre: new FormControl('', [
         Validators.required,
@@ -32,14 +34,14 @@ export class RegistrarPageComponent implements OnInit {
           /^(\D)+(\w)*((\.(\w)+)?)+@(\D)+(\w)*((\.(\D)+(\w)*)+)?(\.)[a-z]{2,}$/
         ),
       ]),
-      password: new FormControl('',[
+      password: new FormControl('', [
         Validators.required,
         Validators.minLength(8),
       ]),
-      repite_password: new FormControl('',[
-      Validators.required,
-      Validators.minLength(8),
-    ]),
+      repite_password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+      ]),
       direccion: new FormControl('', [
         Validators.required,
         Validators.minLength(4),
@@ -48,12 +50,12 @@ export class RegistrarPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(this.loginService.isLogueado()){
+    if (this.loginService.isLogueado()) {
       this.router.navigate(['/home']);
     }
   }
 
-  registrar(){
+  registrar() {
     const email = this.formulario.value.email;
     const nombre = this.formulario.value.nombre;
     const apellido = this.formulario.value.apellido;
@@ -61,15 +63,21 @@ export class RegistrarPageComponent implements OnInit {
     const contrasenia = this.formulario.value.password;
     const contraseniaRepetida = this.formulario.value.repite_password;
 
-    if(contrasenia != contraseniaRepetida){
+    if (contrasenia != contraseniaRepetida) {
       Swal.fire({
         title: 'Error!',
         text: 'Las contraseñas no coinciden!',
         icon: 'error',
         confirmButtonText: 'Cool',
       });
-    }else{
-      this.usuario = new Usuario(email, contrasenia, nombre, apellido, direccion);
+    } else {
+      this.usuario = new Usuario(
+        email,
+        contrasenia,
+        nombre,
+        apellido,
+        direccion
+      );
 
       this.registrarServicio.registrarUsuario(this.usuario);
     }
