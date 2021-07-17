@@ -21,6 +21,7 @@ import { LoginService } from './Service/login.service';
 import { CarritoService } from './Service/carrito.service';
 import { RegistrarService } from './Service/registrar.service';
 import { NuevoProductoComponent } from './Page/nuevo-producto/nuevo-producto/nuevo-producto.component';
+import { NuevoProductoService } from './Service/nuevoProducto.service';
 
 
 @NgModule({
@@ -45,7 +46,7 @@ import { NuevoProductoComponent } from './Page/nuevo-producto/nuevo-producto/nue
     HttpClientModule,
     FormsModule
   ],
-  providers: [ProductoService, UsuarioService, LoginService, CarritoService, RegistrarService],
+  providers: [ProductoService, UsuarioService, LoginService, CarritoService, RegistrarService, NuevoProductoService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
