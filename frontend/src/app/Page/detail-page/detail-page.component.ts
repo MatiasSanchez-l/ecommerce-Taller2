@@ -12,6 +12,7 @@ import { ProductoService } from 'src/app/Service/producto.service';
 export class DetailPageComponent implements OnInit {
   id: string = '';
   producto: Producto[] = [];
+  productosCarrousel: Producto[] = [];
   constructor(
     private productoService: ProductoService,
     private route: ActivatedRoute,
@@ -25,11 +26,22 @@ export class DetailPageComponent implements OnInit {
       this.productoService.getProductosById(this.id).subscribe((data) => {
         this.producto.push(data);
       });
+      this.mostrarProductosDeLaMismaCategoria(this.id);
     }
   }
 
   agregarAlCarrito(id: string) {
     this.carritoService.agregarProductoAlCarrito(id);
     this.router.navigate(['carrito']);
+  }
+
+  mostrarProductosDeLaMismaCategoria(id: string) {
+    this.productoService.getProductosById(this.id).subscribe((data) => {
+      this.productosCarrousel =
+        this.productoService.mostrarProductosPorClasificacion(
+          data.clasificacion,
+          this.id
+        );
+    });
   }
 }

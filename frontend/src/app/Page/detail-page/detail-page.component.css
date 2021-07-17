@@ -1,0 +1,11 @@
+.link-compra {
+  padding-right: 1em;
+}
+.link-compra a {
+  cursor: pointer;
+  color: #fff;
+  text-decoration: none;
+}
+.link-compra a:hover {
+  text-decoration: underline;
+}

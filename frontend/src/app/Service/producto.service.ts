@@ -45,4 +45,10 @@ export class ProductoService {
       environment.productionUrl + '/producto/' + id
     );
   }
+  mostrarProductosPorClasificacion(clasificacion: string, id:string) {
+    this.getProductos().subscribe((data) => {
+      this.productos = data;
+    });
+    return this.productos.filter((e) => e.clasificacion === clasificacion && e.id !== id).slice(0,3);
+  }
 }
