@@ -1,3 +1,24 @@
+.login-form .form-control {
+  border: 0;
+  border-radius: 0 !important;
+  border-bottom: 1px solid #807862;
+}
+.btn-login {
+  background-color: #807862;
+  color: #fff;
+  font-weight: bold;
+  width: 70%;
+  margin: auto;
+}
+.recover-pass a {
+  color: #807870;
+}
+input.ng-valid.ng-touched {
+  border-bottom: green 2px solid !important;
+}
+input.ng-invalid.ng-touched {
+  border-bottom: red 2px solid !important;
+}
 .btn-outline-marron-contacto {
   background-color: #77705bbb;
   border-color: #77705b;
