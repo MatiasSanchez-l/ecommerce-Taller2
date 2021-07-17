@@ -6,7 +6,7 @@
     <li class="nav-item" *ngIf="isLogueado()">
       <p style="cursor: pointer" (click)="cerrarSesion()">Cerrar Sesion</p>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" *ngIf="!isLogueado()">
       <p [routerLink]="['/registrar']">Registrarse</p>
     </li>
   </ul>
@@ -36,8 +36,16 @@
         <li class="nav-item">
           <a class="nav-link fs-6" [routerLink]="['/contacto']">Contacto</a>
         </li>
+        <li class="nav-item" *ngIf="isLogueado()">
+          <a class="nav-link fs-6" [routerLink]="['/producto']"
+            >Nuevo Producto</a
+          >
+        </li>
         <li class="nav-item">
-          <a class="nav-link fs-6 position-relative" [routerLink]="['/carrito']">
+          <a
+            class="nav-link fs-6 position-relative"
+            [routerLink]="['/carrito']"
+          >
             <i class="fas fa-shopping-cart"> </i>
 
             <span
@@ -48,7 +56,10 @@
                 translate-middle
                 badge
                 rounded-pill
-                bg-danger d-none">
+                bg-danger
+                d-none
+              "
+            >
               1
               <span class="visually-hidden">unread messages</span>
             </span>

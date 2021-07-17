@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Usuario } from 'src/app/Model/usuario.model.ts';
 import { LoginService } from 'src/app/Service/login.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login-page',
@@ -12,30 +12,17 @@ import Swal from 'sweetalert2';
 export class LoginPageComponent implements OnInit {
   usuario: Usuario;
   logueado: boolean = false;
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: LoginService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.loginService.isLogueado()) {
+      this.router.navigate(['/home']);
+    }
+  }
 
   loguear(form: NgForm) {
     const email = form.value.email;
     const contrasenia = form.value.password;
     this.loginService.loguearUsuario(email, contrasenia);
-    this.logueado = this.loginService.isLogueado();
-
-    if (this.logueado) {
-      Swal.fire({
-        title: 'Bienvenido!',
-        text: '',
-        icon: 'success',
-        confirmButtonText: 'Cool',
-      });
-    } else {
-      Swal.fire({
-        title: 'Error!',
-        text: 'Usuario o contraseña incorrecta',
-        icon: 'error',
-        confirmButtonText: 'Cool',
-      });
-    }
   }
 }

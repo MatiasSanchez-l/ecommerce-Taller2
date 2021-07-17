@@ -13,6 +13,8 @@ app.use(express.urlencoded({ extended: false }));
 //rutas
 app.use("/usuario", require("./routes/usuarios"));
 app.use("/producto", require("./routes/productos"));
+app.use("/nodemailer", require("./routes/nodemailer"));
+
 app.use((err, req, res) => {
   console.log(err.message);
 });

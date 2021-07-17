@@ -23,17 +23,30 @@ export class TiendaPageComponent implements OnInit {
   }
 
   onLoad(): void {
-    console.log('entramos a ngOnInit productos');
     this.productosService.getProductos().subscribe((data) => {
       this.productos = data;
     });
   }
 
+  onChange($event: any) {
+    let orden = $event.target.value;
+
+    const ordenados = this.productos;
+    if (orden === 1) {
+      this.productos = ordenados.sort((a, b) =>
+        a.precio < b.precio ? -1 : a.precio > b.precio ? 1 : 0
+      );
+    }
+    if (orden === 2) {
+      this.productos = ordenados.sort((a, b) =>
+        a.precio < b.precio ? 1 : a.precio > b.precio ? -1 : 0
+      );
+    }
+  }
+
   agregarAlCarrito(id: string) {
-    console.log('entramos a agregarCarrito');
     this.carritoService.agregarProductoAlCarrito(id);
     this.carritoService.setCarrito(this.carritoService.devolverCarritoActual());
-    console.log('agregamos prodcuto a agregarCarrito');
     this.router.navigate(['carrito']);
   }
 }

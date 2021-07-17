@@ -1,26 +1,85 @@
 <div class="container">
   <div class="p-3">
-    <h3>Detalle del prodcuto</h3>
+    <h2>Detalle del prodcuto</h2>
   </div>
 
-  <div class="row mb-5" *ngFor='let product of producto' >
+  <div class="row mb-5" *ngFor="let product of producto">
     <div class="col-12 col-md-6">
-      <img src="{{product.imagen}}" class="img-thumbnail img-fluid" alt="...">
+      <img
+        src="{{ product.imagen }}"
+        class="img-thumbnail img-fluid"
+        alt="..."
+      />
     </div>
     <div class="col-12 col-md-6">
       <div class="pt-5 text-center">
-        <h5>{{product.nombre}}</h5>
+        <h2>{{ product.nombre }}</h2>
       </div>
 
-      <p>{{product.descripcion}}</p>
+      <h3>{{ product.descripcion }}</h3>
 
-      <h6 class="text-uppercase">{{product.clasificacion}}</h6>
+      <h6 class="text-uppercase">{{ product.clasificacion }}</h6>
       <div class="product__item__text">
-        <h5>{{product.precio | currency: "ARS":"$":"1.0-2"}}</h5>
+        <h5>{{ product.precio | currency: "ARS":"$":"1.0-2" }}</h5>
       </div>
-      <a class="btn btn-outline-secondary" (click)="agregarAlCarrito(product.id)">Agregar al carrito</a>
-
+      <a
+        class="btn btn-outline-secondary"
+        (click)="agregarAlCarrito(product.id)"
+        >Agregar al carrito</a
+      >
     </div>
-
   </div>
+  <section class="pt-5 pb-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-6" *ngFor="let product of producto">
+          <h3 class="mb-3">Mas productos de {{ product.clasificacion }}</h3>
+        </div>
+
+        <div class="col-12">
+          <div
+            id="carouselExampleIndicators2"
+            class="carousel slide"
+            data-ride="carousel"
+          >
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="row">
+                  <div
+                    class="col-md-4 mb-3"
+                    *ngFor="let productoCarrousel of productosCarrousel"
+                  >
+                    <div class="card">
+                      <img
+                        class="img-fluid"
+                        alt="100%x280"
+                        src="{{ productoCarrousel.imagen }}"
+                      />
+                      <div class="card-body">
+                        <h4 class="card-title">
+                          {{ productoCarrousel.nombre }}
+                        </h4>
+                        <p class="card-text">
+                          {{ productoCarrousel.descripcion }}
+                        </p>
+                        <div class="text-end link-compra">
+                          <a
+                            [routerLink]="['/tienda', productoCarrousel.id]"
+                            class="pl-3 text-dark"
+                            >Ir a comprar
+                            <i class="fas fa-long-arrow-alt-right"></i
+                          ></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>

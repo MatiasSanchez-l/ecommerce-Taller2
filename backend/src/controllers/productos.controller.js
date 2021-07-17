@@ -21,7 +21,6 @@ const getProductos = async (req, res) => {
     const productos = await dynamoClient.scan(params).promise();
     res.status(200).json(productos.Items);
   } catch (error) {
-    console.log(error);
     return res.status(500).json({ erro: "Algo salio mal." });
   }
 };
@@ -29,6 +28,13 @@ const getProductos = async (req, res) => {
 const getProductoPorId = async (req, res) => {
   try {
     const idProducto = req.params.id;
+
+    if (!idProducto) {
+      return res.status(400).json({
+        mensaje: "Id invalido",
+      });
+    }
+
     const params = {
       TableName: TABLE_NAME,
       Key: {
@@ -38,13 +44,42 @@ const getProductoPorId = async (req, res) => {
     let response = await dynamoClient.get(params).promise();
     return res.status(200).json(response.Item);
   } catch (error) {
-    console.log(error);
     return res.status(500).json({ erro: "Algo salio mal." });
   }
 };
 
 const crearProducto = async (req, res) => {
   try {
+    const nombre = req.body.nombre;
+    const descripcion = req.body.descripcion;
+    const clasificacion = req.body.clasificacion;
+    const precio = req.body.precio;
+    const imagen = req.body.imagen;
+    let errores = [];
+    if (!nombre || !descripcion || !clasificacion || !precio || !imagen) {
+      if (!nombre) {
+        errores.push("Por favor complete el campo nombre. ");
+      }
+
+      if (!descripcion) {
+        errores.push("Por favor complete el campo descripcion. ");
+      }
+
+      if (!clasificacion) {
+        errores.push("Por favor complete el campo clasificacion. ");
+      }
+
+      if (!precio) {
+        errores.push("Por favor complete el campo precio. ");
+      }
+
+      if (!imagen) {
+        errores.push("Por favor complete el campo imagen.");
+      }
+
+      return res.status(400).json(errores);
+    }
+
     req.body.id = uuidv4();
     const params = {
       TableName: TABLE_NAME,
@@ -53,7 +88,6 @@ const crearProducto = async (req, res) => {
     await dynamoClient.put(params).promise();
     return res.sendStatus(201);
   } catch (error) {
-    console.log(error);
     return res.status(500).json({ erro: "Algo salio mal." });
   }
 };
@@ -67,7 +101,6 @@ const modificarProducto = async (req, res) => {
     await dynamoClient.put(params).promise();
     return res.sendStatus(200);
   } catch (error) {
-    console.log(error);
     return res.status(500).json({ erro: "Algo salio mal." });
   }
 };
@@ -86,7 +119,6 @@ const borrarProducto = async (req, res) => {
 
     return res.sendStatus(200);
   } catch (error) {
-    console.log(error);
     return res.status(500).json({ erro: "Algo salio mal." });
   }
 };

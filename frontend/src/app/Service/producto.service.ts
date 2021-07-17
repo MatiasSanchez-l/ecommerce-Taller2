@@ -11,20 +11,44 @@ export class ProductoService {
   constructor(private httpClient: HttpClient) {}
 
   getProductos(): Observable<Producto[]> {
-    console.log('entramos a getProductos');
-
     return this.httpClient.get<Producto[]>(
       environment.productionUrl + '/producto'
     );
   }
 
-  getTresProductos(){
-    this.productos
+  getTresProductos() {
+    this.getProductos().subscribe((data) => {
+      this.productos = data;
+    });
+    let tresProductos: Producto[] = [];
+    tresProductos.push(
+      this.productos[Math.floor(Math.random() * this.productos.length)]
+    );
+    tresProductos.push(
+      this.productos[Math.floor(Math.random() * this.productos.length)]
+    );
+    tresProductos.push(
+      this.productos[Math.floor(Math.random() * this.productos.length)]
+    );
+    return tresProductos;
+  }
+
+  getRandomProduct() {
+    this.getProductos().subscribe((data) => {
+      this.productos = data;
+    });
+    return this.productos[Math.floor(Math.random() * this.productos.length)];
   }
 
   getProductosById(id: string): Observable<Producto> {
     return this.httpClient.get<Producto>(
       environment.productionUrl + '/producto/' + id
     );
+  }
+  mostrarProductosPorClasificacion(clasificacion: string, id:string) {
+    this.getProductos().subscribe((data) => {
+      this.productos = data;
+    });
+    return this.productos.filter((e) => e.clasificacion === clasificacion && e.id !== id).slice(0,3);
   }
 }

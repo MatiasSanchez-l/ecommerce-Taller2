@@ -9,12 +9,30 @@ import { CarritoService } from 'src/app/Service/carrito.service';
 })
 export class CarritoPageComponent implements OnInit {
   carrito: Producto[] = [];
+  precioTotalDelCarrito: number = 0;
 
   constructor(private carritoService: CarritoService) {}
 
   ngOnInit(): void {
     this.carrito = this.carritoService.devolverCarritoActual();
-    console.log(this.carrito)
+    this.precioTotalDelCarrito = this.carritoService.getValorTotalCarrito();
   }
 
+  aumentarCantidad(id: string) {
+    this.carritoService.aumentarCantidadDeProductoDelCarrito(id);
+    this.carritoService.calcularPrecioTotalDelProducto(id);
+    this.carritoService.calcularValorTotalDelCarrito();
+    this.ngOnInit();
+  }
+
+  restarCantidad(id: string) {
+    this.carritoService.restarCantidadDeProductoDelCarrito(id);
+    this.carritoService.calcularPrecioTotalDelProducto(id);
+    this.carritoService.calcularValorTotalDelCarrito();
+    this.ngOnInit();
+  }
+  borrarProductoDelCarrito(id: string) {
+    this.carritoService.borrarProductoDelCarrito(id);
+    this.ngOnInit();
+  }
 }

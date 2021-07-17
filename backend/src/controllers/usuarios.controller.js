@@ -24,6 +24,40 @@ const registrarUsuario = (req, res) => {
     var direccion = req.body.direccion;
     var contrasenia = req.body.contrasenia;
 
+    let errores = [];
+
+    if (!nombre || !apellido || !email || !direccion || !contrasenia) {
+      if (!nombre) {
+        errores.push("Por favor complete el campo nombre. ");
+      }
+
+      if (!apellido) {
+        errores.push("Por favor complete el campo apellido. ");
+      }
+
+      if (!email) {
+        errores.push("Por favor complete el campo email. ");
+      }
+
+      if (!direccion) {
+        errores.push("Por favor complete el campo direccion. ");
+      }
+
+      if (!contrasenia) {
+        errores.push("Por favor complete el campo contrasenia. ");
+      }
+
+      return res.status(400).json(errores);
+    }
+
+    if (contrasenia.toString().length < 8 || /^[a-z]+$/.test(contrasenia)) {
+      errores.push(
+        "La contraseña debe ser tener minimo 8 caracteres y debe tener al menos una letra minuscula."
+      );
+
+      return res.status(400).json(errores);
+    }
+
     var listaAtributos = [];
     listaAtributos.push(
       new AmazonCognitoIdentity.CognitoUserAttribute({
@@ -58,7 +92,6 @@ const registrarUsuario = (req, res) => {
       function (err, result) {
         try {
           if (err) {
-            console.log(err);
             return res
               .status(500)
               .json({ error: "Algo salio mal.", mensaje: err.message });
@@ -66,13 +99,11 @@ const registrarUsuario = (req, res) => {
 
           return res.sendStatus(201);
         } catch (error) {
-          console.log(error);
           return res.status(500).json({ erro: "Algo salio maaaaaal." });
         }
       }
     );
   } catch (error) {
-    console.log(error);
     return res.status(500).json({ erro: "Algo salio mal." });
   }
 };
@@ -80,6 +111,31 @@ const registrarUsuario = (req, res) => {
 const loguearUsuario = (req, res) => {
   const email = req.body.email;
   const contrasenia = req.body.contrasenia;
+  let errores = [];
+
+  if (!email || !contrasenia) {
+    if (!email) {
+      errores.push("Por favor complete el campo email. ");
+    }
+
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      errores.push("Por favor ingrese un email valido. ");
+    }
+
+    if (!contrasenia) {
+      errores.push("Por favor complete el campo contrasenia. ");
+    }
+
+    return res.status(400).json(errores);
+  }
+
+  if (contrasenia.toString().length < 8 || /^[a-z]+$/.test(contrasenia)) {
+    errores.push(
+      "La contraseña debe ser tener minimo 8 caracteres y debe tener al menos una letra minuscula."
+    );
+
+    return res.status(400).json(errores);
+  }
 
   var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails({
     Email: email,
@@ -113,10 +169,17 @@ const loguearUsuario = (req, res) => {
 
 const desloguearUsuario = (req, res) => {
   var { email } = req;
+  let errores = [];
 
   const accessToken = req.header("accessToken");
   const idToken = req.header("idToken");
   const refreshToken = req.header("refreshToken");
+
+  if (!accessToken || !idToken || !refreshToken) {
+    return res.status(400).json({
+      mensaje: "Error de tokens.",
+    });
+  }
 
   const nuevoAccessToken = new AmazonCognitoIdentity.CognitoAccessToken({
     AccessToken: accessToken,
