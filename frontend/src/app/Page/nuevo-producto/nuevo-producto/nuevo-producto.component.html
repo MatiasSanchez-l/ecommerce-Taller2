@@ -19,15 +19,12 @@
       />
     </div>
     <div class="mb-3">
-      <label for="clasificacion" class="form-label">Clasificacion</label>
-      <input
-        type="text"
-        class="form-control"
-        id="clasificacion"
-        name="clasificacion"
-        ngModel
-        required
-      />
+      <label for="clasificaciones" class="form-label">Clasificación</label>
+      <select class="form-select" aria-label="Default select example" name="clasificaciones" id="clasificaciones" ngModel>
+        <option value="Mesa">Mesa</option>
+        <option value="Silla">Silla</option>
+        <option value="Sillón">Sillón</option>
+      </select>
     </div>
     <div class="mb-3">
       <label for="precio" class="form-label">Precio</label>
