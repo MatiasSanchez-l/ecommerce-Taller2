@@ -54,6 +54,42 @@ const getProductoPorId = async (req, res) => {
 
 const crearProducto = async (req, res) => {
   try {
+    const nombre = req.body.nombre;
+    const descripcion = req.body.descripcion;
+    const clasificacion = req.body.clasificacion;
+    const precio = req.body.precio;
+    const imagen = req.body.imagen;
+    let errores = [];
+    if (
+      !nombre ||
+      !descripcion ||
+      !clasificacion ||
+      !precio ||
+      !imagen
+    ) {
+      if(!nombre){
+        errores.push("Por favor complete el campo nombre. ");
+      }
+  
+      if(!descripcion){
+        errores.push("Por favor complete el campo descripcion. ");
+      }
+
+      if(!clasificacion){
+        errores.push("Por favor complete el campo clasificacion. ");
+      }
+  
+      if(!precio){
+        errores.push("Por favor complete el campo precio. ");
+      }
+
+      if(!imagen){
+        errores.push("Por favor complete el campo imagen.");
+      }
+  
+      return res.status(400).json(errores);
+    }
+
     req.body.id = uuidv4();
     const params = {
       TableName: TABLE_NAME,
