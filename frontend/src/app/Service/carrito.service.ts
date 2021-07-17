@@ -42,25 +42,28 @@ export class CarritoService {
     let producto = this.carrito.find((e) => e.id === id);
     if (producto != null) {
       //this.carrito = this.carrito.filter((e) => e.id !== id);
+      let index = this.carrito.indexOf(producto);
       producto.cantidad = producto.cantidad + 1;
-      this.carrito.push(producto);
+      this.carrito.splice(index, 1, producto);
     }
   }
   restarCantidadDeProductoDelCarrito(id: string) {
     let producto = this.carrito.find((e) => e.id === id);
     if (producto != null) {
+      let index = this.carrito.indexOf(producto);
       //this.carrito = this.carrito.filter((e) => e.id !== id);
       if (producto.cantidad > 1) producto.cantidad = producto.cantidad - 1;
-      this.carrito.push(producto);
+      this.carrito.splice(index, 1, producto);
     }
   }
 
   calcularPrecioTotalDelProducto(id: string) {
     let producto = this.carrito.find((e) => e.id === id);
     if (producto != null) {
-      this.carrito = this.carrito.filter((e) => e.id !== id);
+      let index = this.carrito.indexOf(producto);
+      //this.carrito = this.carrito.filter((e) => e.id !== id);
       producto.precioTotal = producto.cantidad * producto.precio;
-      this.carrito.push(producto);
+      this.carrito.splice(index, 1, producto);
     }
   }
   calcularValorTotalDelCarrito() {

@@ -37,6 +37,7 @@ export class ContactoPageComponent implements OnInit {
   ngOnInit(): void {}
 
   registrarConsulta() {
+
     if (this.formulario.valid) {
       const consulta = {
         nombre: this.formulario.value.nombre,
@@ -47,10 +48,23 @@ export class ContactoPageComponent implements OnInit {
       };
       console.log(consulta);
       try {
-        this.httpClient.post(
-          environment.productionUrl + 'nodemailer/contacto',
-          consulta
+        console.log("entramos al try")
+        this.httpClient.post<any>(
+          environment.productionUrl + '/nodemailer/contacto',
+          {
+            nombre: this.formulario.value.nombre,
+            apellido: this.formulario.value.apellido,
+            email: this.formulario.value.email,
+            telefono: this.formulario.value.telefono,
+            consulta: this.formulario.value.consulta,
+          }
         );
+        Swal.fire({
+          title: '¡Exito!',
+          text: 'El formulario fue enviado con exito, dentro de los proximos dias se le resolvera la consulta!',
+          icon: 'success',
+          confirmButtonText: 'Cool',
+        });
       } catch (error) {
         Swal.fire({
           title: 'Error!',
@@ -60,12 +74,7 @@ export class ContactoPageComponent implements OnInit {
         });
       }
 
-      Swal.fire({
-        title: '¡Exito!',
-        text: 'El formulario fue enviado con exito, dentro de los proximos dias se le resolvera la consulta!',
-        icon: 'success',
-        confirmButtonText: 'Cool',
-      });
+
     } else {
       Swal.fire({
         title: 'Error!',
@@ -74,5 +83,6 @@ export class ContactoPageComponent implements OnInit {
         confirmButtonText: 'Cool',
       });
     }
+    this.formulario.reset();
   }
 }
