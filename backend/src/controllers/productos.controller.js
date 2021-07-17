@@ -29,6 +29,15 @@ const getProductos = async (req, res) => {
 const getProductoPorId = async (req, res) => {
   try {
     const idProducto = req.params.id;
+
+    if (
+      !idProducto
+    ) {
+      return res.status(400).json({
+        mensaje: "Id invalido",
+      });
+    }
+
     const params = {
       TableName: TABLE_NAME,
       Key: {
