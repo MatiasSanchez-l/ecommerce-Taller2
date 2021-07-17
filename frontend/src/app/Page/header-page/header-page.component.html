@@ -6,7 +6,7 @@
     <li class="nav-item" *ngIf="isLogueado()">
       <p style="cursor: pointer" (click)="cerrarSesion()">Cerrar Sesion</p>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" *ngIf="!isLogueado()">
       <p [routerLink]="['/registrar']">Registrarse</p>
     </li>
   </ul>
