@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/Model/usuario.model.ts';
+import { LoginService } from 'src/app/Service/login.service';
 import { RegistrarService } from 'src/app/Service/registrar.service';
 import Swal from 'sweetalert2';
 
@@ -13,7 +14,9 @@ import Swal from 'sweetalert2';
 export class RegistrarPageComponent implements OnInit {
   formulario: FormGroup;
   usuario: Usuario;
-  constructor(private registrarServicio: RegistrarService) {
+  constructor(private registrarServicio: RegistrarService,
+    private loginService: LoginService,
+    private router: Router) {
     this.formulario = new FormGroup({
       nombre: new FormControl('', [
         Validators.required,
@@ -44,7 +47,11 @@ export class RegistrarPageComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if(!this.loginService.isLogueado()){
+      this.router.navigate(['/home']);
+    }
+  }
 
   registrar(){
     const email = this.formulario.value.email;
