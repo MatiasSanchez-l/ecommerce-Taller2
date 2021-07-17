@@ -12,6 +12,7 @@ import { ErrorPageComponent } from './Page/error-page/error-page.component';
 import { CarritoPageComponent } from './Page/carrito-page/carrito-page.component';
 import { RegistrarPageComponent } from './Page/registrar-page/registrar-page.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductoService } from './Service/producto.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -44,6 +45,7 @@ import { NuevoProductoService } from './Service/nuevoProducto.service';
     SweetAlert2Module,
     ReactiveFormsModule,
     HttpClientModule,
+    NgSelectModule,
     FormsModule
   ],
   providers: [ProductoService, UsuarioService, LoginService, CarritoService, RegistrarService, NuevoProductoService],
