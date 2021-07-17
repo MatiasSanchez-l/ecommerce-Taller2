@@ -11,8 +11,6 @@ export class ProductoService {
   constructor(private httpClient: HttpClient) {}
 
   getProductos(): Observable<Producto[]> {
-    console.log('entramos a getProductos');
-
     return this.httpClient.get<Producto[]>(
       environment.productionUrl + '/producto'
     );
@@ -21,8 +19,6 @@ export class ProductoService {
   getTresProductos() {
     this.getProductos().subscribe((data) => {
       this.productos = data;
-      console.log(data);
-
     });
     let tresProductos: Producto[] = [];
     tresProductos.push(
@@ -37,7 +33,7 @@ export class ProductoService {
     return tresProductos;
   }
 
-  getRandomProduct(){
+  getRandomProduct() {
     this.getProductos().subscribe((data) => {
       this.productos = data;
     });

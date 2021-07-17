@@ -18,53 +18,71 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor='let producto of carrito'>
+              <tr *ngFor="let producto of carrito">
                 <td class="product__cart__item">
                   <div class="product__cart__item__pic">
                     <img src="" />
                   </div>
                   <div class="product__cart__item__text">
-                    <h5>{{producto.nombre}}</h5>
-                    <h6>{{producto.clasificacion}}</h6>
+                    <h5>{{ producto.nombre }}</h5>
+                    <h6>{{ producto.clasificacion }}</h6>
                   </div>
                 </td>
                 <td class="quantity__item">
                   <div class="quantity">
                     <div class="pro-qty-2">
-                      <span class="fa fa-angle-up dec qtybtn"></span>
-                      <input type="text" value="1" readonly/>
-                      <span class="fa fa-angle-down inc qtybtn"></span>
+                      <span
+                        class="fa fa-angle-up dec qtybtn"
+                        (click)="aumentarCantidad(producto.id)"
+                      >
+                      </span>
+                      <input
+                        type="text"
+                        value="{{ producto.cantidad }}"
+                        readonly
+                      />
+                      <span
+                        class="fa fa-angle-down inc qtybtn"
+                        (click)="restarCantidad(producto.id)"
+                      ></span>
                     </div>
                   </div>
                 </td>
-                <td class="cart__price">{{producto.precio | currency: "ARS":"$":"1.2-2"}}</td>
-                <td class="cart__close"><i class="fas fa-times"></i></td>
+                <td class="cart__price">
+                  {{ producto.precioTotal | currency: "ARS":"$":"1.2-2" }}
+                </td>
+                <td class="cart__close inc qtybtn">
+                  <span (click)="borrarProductoDelCarrito(producto.id)">
+                    <i class="fas fa-times pointer"></i>
+                  </span>
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
       <div class="col-lg-4">
-        <div class="cart__discount">
-          <h6>Discount codes</h6>
-          <form action="#">
-            <input type="text" placeholder="Coupon code" />
-            <button type="submit">Apply</button>
-          </form>
-        </div>
         <div class="cart__total">
           <h6>Cart total</h6>
           <ul>
-            <li>Subtotal <span>$ 169.50</span></li>
-            <li>Total <span>$ 169.50</span></li>
+            <li>
+              Subtotal
+              <span>{{
+                precioTotalDelCarrito | currency: "ARS":"$":"1.2-2"
+              }}</span>
+            </li>
+            <li>
+              Total
+              <span>{{
+                precioTotalDelCarrito | currency: "ARS":"$":"1.2-2"
+              }}</span>
+            </li>
           </ul>
-          <a href="#" class="primary-btn">Proceed to checkout</a>
+          <a href="#" class="primary-btn">Proceder a realizar el pago</a>
         </div>
       </div>
     </div>
   </div>
-  <script>
-
-  </script>
+  <script></script>
 </section>
 <!-- Shopping Cart Section End -->
