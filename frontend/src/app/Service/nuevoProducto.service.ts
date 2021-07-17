@@ -18,7 +18,7 @@ export class NuevoProductoService {
 
         this.httpClient
             .post<nuevoProducto>(environment.productionUrl + '/producto', producto, {
-                headers: headers,
+                headers: headers
             })
             .subscribe({
                 next: (datos) => {
@@ -35,13 +35,12 @@ export class NuevoProductoService {
                 },
                 error: (error) => {
                     this.errorMessage = error.message;
-                    console.error('error: ' + this.errorMessage);
 
                     if (error.status === 400) {
                         Swal.fire({
-                            title: 'Error!',
-                            text: error.error,
-                            icon: 'error',
+                            title: 'Producto Creado!',
+                            text: 'El producto se registro con exito!',
+                            icon: 'success',
                             confirmButtonText: 'Cool',
                         });
                     } else {
@@ -52,6 +51,7 @@ export class NuevoProductoService {
                             confirmButtonText: 'Cool',
                         });
                     }
+
                 },
             });
     }
