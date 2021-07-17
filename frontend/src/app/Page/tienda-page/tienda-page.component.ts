@@ -30,7 +30,7 @@ export class TiendaPageComponent implements OnInit {
 
   onChange($event: any) {
     let orden = $event.target.value;
-    console.log(this.productos);
+
     const ordenados = this.productos;
     if (orden === 1) {
       this.productos = ordenados.sort((a, b) =>
@@ -42,7 +42,6 @@ export class TiendaPageComponent implements OnInit {
         a.precio < b.precio ? 1 : a.precio > b.precio ? -1 : 0
       );
     }
-    console.log(this.productos);
   }
 
   agregarAlCarrito(id: string) {

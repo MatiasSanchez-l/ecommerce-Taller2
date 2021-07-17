@@ -7,21 +7,28 @@ export class CarritoService {
   @Output() cantidadCarrito = new EventEmitter<number>();
 
   carrito: Producto[];
+  valorTotalCarrito: number;
 
   constructor(private productoSerive: ProductoService) {
     this.carrito = [];
   }
 
+  getValorTotalCarrito() {
+    this.calcularValorTotalDelCarrito();
+    return this.valorTotalCarrito;
+  }
+
   agregarProductoAlCarrito(id: string) {
     this.productoSerive.getProductosById(id).subscribe((data) => {
       let producto = this.carrito.find((e) => e.id === id);
-      console.log(producto);
       if (producto !== undefined && this.carrito.includes(producto)) {
         this.aumentarCantidadDeProductoDelCarrito(id);
+        this.calcularValorTotalDelCarrito();
       } else {
         data.cantidad = 1;
         data.precioTotal = data.precio;
         this.carrito.push(data);
+        this.calcularValorTotalDelCarrito();
       }
     });
   }
@@ -71,7 +78,7 @@ export class CarritoService {
     this.carrito.forEach((e) => {
       precioTotal += e.precioTotal;
     });
-    return precioTotal;
+    this.valorTotalCarrito = precioTotal;
   }
   borrarProductoDelCarrito(id: string) {
     this.carrito = this.carrito.filter((e) => e.id !== id);

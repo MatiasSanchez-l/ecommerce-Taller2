@@ -46,9 +46,8 @@ export class ContactoPageComponent implements OnInit {
         telefono: this.formulario.value.telefono,
         consulta: this.formulario.value.consulta,
       };
-      console.log(consulta);
+
       try {
-        console.log("entramos al try")
         this.httpClient.post<any>(
           environment.productionUrl + '/nodemailer/contacto',
           {

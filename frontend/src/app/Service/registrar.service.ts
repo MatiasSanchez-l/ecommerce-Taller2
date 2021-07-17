@@ -23,8 +23,6 @@ export class RegistrarService {
       )
       .subscribe(
         (response: any) => {
-          console.log(response);
-
           Swal.fire({
             title: 'Registrado!',
             text: 'Se registro con exito! Debe validar su email para poder loguearse.',
@@ -36,8 +34,6 @@ export class RegistrarService {
         },
         (error: any) => {
           this.errorMessage = error.message;
-          console.error('error: ' + this.errorMessage);
-          console.log(error);
           if (error.status === 400) {
             Swal.fire({
               title: 'Error!',

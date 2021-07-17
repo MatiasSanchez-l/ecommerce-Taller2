@@ -23,10 +23,6 @@ export class LoginService {
       })
       .subscribe({
         next: (datos) => {
-          console.log('datos: ' + datos);
-
-          console.log('logueado correctamente');
-
           this.accessToken = datos.accessToken.toString();
           this.idToken = datos.idToken;
           this.refreshToken = datos.refreshToken;
@@ -43,7 +39,6 @@ export class LoginService {
         error: (error) => {
           this.errorMessage = error.message;
           this.logueado = false;
-          console.error('error: ' + this.errorMessage);
 
           if (error.status === 400) {
             Swal.fire({
@@ -76,9 +71,6 @@ export class LoginService {
       })
       .subscribe({
         next: (datos) => {
-          console.log('datos: ' + datos);
-
-          console.log('deslogueado correctamente');
           this.accessToken = '';
           this.idToken = '';
           this.refreshToken = '';
@@ -86,7 +78,6 @@ export class LoginService {
         },
         error: (error) => {
           this.errorMessage = error.message;
-          console.error('error: ' + this.errorMessage);
         },
       });
   }

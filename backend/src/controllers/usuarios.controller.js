@@ -26,38 +26,34 @@ const registrarUsuario = (req, res) => {
 
     let errores = [];
 
-    if (
-      !nombre ||
-      !apellido ||
-      !email ||
-      !direccion ||
-      !contrasenia
-    ) {
-      if(!nombre){
+    if (!nombre || !apellido || !email || !direccion || !contrasenia) {
+      if (!nombre) {
         errores.push("Por favor complete el campo nombre. ");
       }
 
-      if(!apellido){
+      if (!apellido) {
         errores.push("Por favor complete el campo apellido. ");
       }
 
-      if(!email){
+      if (!email) {
         errores.push("Por favor complete el campo email. ");
       }
 
-      if(!direccion){
+      if (!direccion) {
         errores.push("Por favor complete el campo direccion. ");
       }
-      
-      if(!contrasenia){
+
+      if (!contrasenia) {
         errores.push("Por favor complete el campo contrasenia. ");
       }
 
       return res.status(400).json(errores);
     }
 
-    if(contrasenia.toString().length < 8 || /^[a-z]+$/.test(contrasenia)){
-      errores.push("La contraseña debe ser tener minimo 8 caracteres y debe tener al menos una letra minuscula.");
+    if (contrasenia.toString().length < 8 || /^[a-z]+$/.test(contrasenia)) {
+      errores.push(
+        "La contraseña debe ser tener minimo 8 caracteres y debe tener al menos una letra minuscula."
+      );
 
       return res.status(400).json(errores);
     }
@@ -96,7 +92,6 @@ const registrarUsuario = (req, res) => {
       function (err, result) {
         try {
           if (err) {
-            console.log(err);
             return res
               .status(500)
               .json({ error: "Algo salio mal.", mensaje: err.message });
@@ -104,13 +99,11 @@ const registrarUsuario = (req, res) => {
 
           return res.sendStatus(201);
         } catch (error) {
-          console.log(error);
           return res.status(500).json({ erro: "Algo salio maaaaaal." });
         }
       }
     );
   } catch (error) {
-    console.log(error);
     return res.status(500).json({ erro: "Algo salio mal." });
   }
 };
@@ -120,27 +113,26 @@ const loguearUsuario = (req, res) => {
   const contrasenia = req.body.contrasenia;
   let errores = [];
 
-  if (
-    !email ||
-    !contrasenia
-  ) {
-    if(!email){
+  if (!email || !contrasenia) {
+    if (!email) {
       errores.push("Por favor complete el campo email. ");
     }
 
-    if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)){
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
       errores.push("Por favor ingrese un email valido. ");
     }
 
-    if(!contrasenia){
+    if (!contrasenia) {
       errores.push("Por favor complete el campo contrasenia. ");
     }
 
     return res.status(400).json(errores);
   }
 
-  if(contrasenia.toString().length < 8 || /^[a-z]+$/.test(contrasenia)){
-    errores.push("La contraseña debe ser tener minimo 8 caracteres y debe tener al menos una letra minuscula.");
+  if (contrasenia.toString().length < 8 || /^[a-z]+$/.test(contrasenia)) {
+    errores.push(
+      "La contraseña debe ser tener minimo 8 caracteres y debe tener al menos una letra minuscula."
+    );
 
     return res.status(400).json(errores);
   }
@@ -183,11 +175,7 @@ const desloguearUsuario = (req, res) => {
   const idToken = req.header("idToken");
   const refreshToken = req.header("refreshToken");
 
-  if (
-    !accessToken ||
-    !idToken ||
-    !refreshToken
-  ) {
+  if (!accessToken || !idToken || !refreshToken) {
     return res.status(400).json({
       mensaje: "Error de tokens.",
     });

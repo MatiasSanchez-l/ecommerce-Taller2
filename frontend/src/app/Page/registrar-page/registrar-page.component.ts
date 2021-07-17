@@ -83,7 +83,4 @@ export class RegistrarPageComponent implements OnInit {
     }
   }
 
-  onSubmit() {
-    console.log(this.formulario.value);
-  }
 }

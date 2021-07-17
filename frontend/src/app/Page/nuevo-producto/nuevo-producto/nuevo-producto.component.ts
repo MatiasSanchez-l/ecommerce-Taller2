@@ -27,10 +27,9 @@ export class NuevoProductoComponent implements OnInit {
     const precio = form.value.precio;
     const imagen = form.value.imagen;
     const descripcion = form.value.descripcion;
-    console.log("clasificaciones " + clasificacion);
 
     this.producto = new nuevoProducto(nombre, descripcion, clasificacion, precio, imagen);
-    
+
     this.nuevoProductoService.registrarNuevoProducto(this.producto);
   }
 }

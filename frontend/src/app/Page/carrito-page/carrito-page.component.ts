@@ -15,8 +15,7 @@ export class CarritoPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.carrito = this.carritoService.devolverCarritoActual();
-    this.precioTotalDelCarrito =
-      this.carritoService.calcularValorTotalDelCarrito();
+    this.precioTotalDelCarrito = this.carritoService.getValorTotalCarrito();
   }
 
   aumentarCantidad(id: string) {

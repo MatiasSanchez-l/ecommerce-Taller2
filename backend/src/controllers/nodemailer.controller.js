@@ -7,7 +7,7 @@ nodemailerCtrl.contacto = async (req, res) => {
   const email = req.body.email;
   const telefono = req.body.telefono;
   const consulta = req.body.consulta;
-  console.log("entramos a nodemailer");
+
   if (!nombre || !apellido || !email || !consulta) {
     res.status(401).json({
       status: "errorCampos",
@@ -15,18 +15,16 @@ nodemailerCtrl.contacto = async (req, res) => {
     });
   } else {
     try {
-      
       const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 465,
         secure: true,
         auth: {
-          user: 'fagliano.santi@gmail.com',
-          pass: 'jpnjqptkxrljabzm',
+          user: "fagliano.santi@gmail.com",
+          pass: "jpnjqptkxrljabzm",
         },
       });
       try {
-        console.log("entramos a nodemailer");
         await transporter.sendMail({
           from: '"Ecommerce" <adminpaginataller@yopmail.com>', // sender address
           to: "adminpaginataller@yopmail.com", // list of receivers
