@@ -16,19 +16,15 @@
         name="nombre"
         placeholder="Sillón Velikan"
         ngModel
-        required
       />
     </div>
     <div class="mb-3">
-      <label for="clasificacion" class="form-label">Clasificacion</label>
-      <input
-        type="text"
-        class="form-control"
-        id="clasificacion"
-        name="clasificacion"
-        ngModel
-        required
-      />
+      <label for="clasificaciones" class="form-label">Clasificación</label>
+      <select class="form-select" aria-label="Default select example" name="clasificaciones" id="clasificaciones" ngModel>
+        <option value="Mesa">Mesa</option>
+        <option value="Silla">Silla</option>
+        <option value="Sillón">Sillón</option>
+      </select>
     </div>
     <div class="mb-3">
       <label for="precio" class="form-label">Precio</label>
@@ -54,7 +50,12 @@
     </div>
     <div class="mt-1">
       <label class="form-label">Descripcion</label>
-      <textarea class="form-control" name="descripcion"></textarea>
+      <textarea
+        class="form-control"
+        name="descripcion"
+        id="descripcion"
+        ngModel
+      ></textarea>
     </div>
     <button type="submit" class="btn btn-producto mt-2">
       Guardar Producto

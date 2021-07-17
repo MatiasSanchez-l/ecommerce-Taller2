@@ -118,6 +118,7 @@ const registrarUsuario = (req, res) => {
 const loguearUsuario = (req, res) => {
   const email = req.body.email;
   const contrasenia = req.body.contrasenia;
+  let errores = [];
 
   if (
     !email ||
@@ -176,6 +177,7 @@ const loguearUsuario = (req, res) => {
 
 const desloguearUsuario = (req, res) => {
   var { email } = req;
+  let errores = [];
 
   const accessToken = req.header("accessToken");
   const idToken = req.header("idToken");
