@@ -6,6 +6,7 @@ import { DetailPageComponent } from './Page/detail-page/detail-page.component';
 import { ErrorPageComponent } from './Page/error-page/error-page.component';
 import { HomePageComponent } from './Page/home-page/home-page.component';
 import { LoginPageComponent } from './Page/login-page/login-page.component';
+import { NuevoProductoComponent } from './Page/nuevo-producto/nuevo-producto/nuevo-producto.component';
 import { RegistrarPageComponent } from './Page/registrar-page/registrar-page.component';
 import { TiendaPageComponent } from './Page/tienda-page/tienda-page.component';
 
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'tienda', component: TiendaPageComponent },
   { path: 'tienda/:id', component: DetailPageComponent },
   { path: 'carrito', component: CarritoPageComponent },
+  { path: 'producto', component: NuevoProductoComponent },
   { path: '**', component: ErrorPageComponent },
 ];
 

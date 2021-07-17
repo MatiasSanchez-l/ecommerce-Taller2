@@ -20,6 +20,7 @@ import { UsuarioService } from './Service/usuario.service';
 import { LoginService } from './Service/login.service';
 import { CarritoService } from './Service/carrito.service';
 import { RegistrarService } from './Service/registrar.service';
+import { NuevoProductoComponent } from './Page/nuevo-producto/nuevo-producto/nuevo-producto.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { RegistrarService } from './Service/registrar.service';
     CarritoPageComponent,
     RegistrarPageComponent,
     DetailPageComponent,
+    NuevoProductoComponent,
   ],
   imports: [
     BrowserModule,
