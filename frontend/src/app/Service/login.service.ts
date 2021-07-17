@@ -41,6 +41,7 @@ export class LoginService {
       },
       error: error => {
         this.errorMessage = error.message;
+        this.logueado = false;
         console.error('error: ' + this.errorMessage);
 
         if (error.status === 400) {

@@ -48,7 +48,7 @@ export class RegistrarPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(!this.loginService.isLogueado()){
+    if(this.loginService.isLogueado()){
       this.router.navigate(['/home']);
     }
   }
