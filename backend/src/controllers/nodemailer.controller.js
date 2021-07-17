@@ -15,24 +15,24 @@ nodemailerCtrl.contacto = async (req, res) => {
     });
   } else {
     try {
-      let testAccount = await nodemailer.createTestAccount();
+      
       const transporter = nodemailer.createTransport({
-        host: "smtp.ethereal.email",
-        port: 587,
-        secure: false,
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true,
         auth: {
-          user: testAccount.user,
-          pass: testAccount.pass,
+          user: 'fagliano.santi@gmail.com',
+          pass: 'jpnjqptkxrljabzm',
         },
       });
       try {
         console.log("entramos a nodemailer");
         await transporter.sendMail({
-          from: "adminpaginataller@yopmail.com", // sender address
-          to: "santifagliano@live.com.ar", // list of receivers
+          from: '"Ecommerce" <adminpaginataller@yopmail.com>', // sender address
+          to: "adminpaginataller@yopmail.com", // list of receivers
           subject: "Consulta Web - Ecommerce", // Subject line
           html:
-            '<!doctype html><html lang="es"><head>    <meta charset="utf-8">    <meta name="viewport" content="width=device-width, initial-scale=1">    <title>Hello, world!</title></head><body>    <header>       <h1>#JuntosxOscar</h1>    </header>    <main class="container mt-2">        <h3 class="text-center">Familia Fagliano tienen una nueva consulta</h3>        <hr class="hr">        <h4>Datos:</h4> <span><b>Nombre: </b> "' +
+            '<!doctype html><html lang="es"><head>    <meta charset="utf-8">    <meta name="viewport" content="width=device-width, initial-scale=1">    <title>Hello, world!</title></head><body>    <header>       <h1>#Ecommerce</h1>    </header>    <main class="container mt-2">        <h3 class="text-center">Alguien ha hecho una consulta</h3>        <hr class="hr">        <h4>Datos:</h4> <span><b>Nombre: </b> "' +
             req.body.nombre +
             '"</span><br> <span> <b>Apellido:            </b>"' +
             req.body.apellido +
